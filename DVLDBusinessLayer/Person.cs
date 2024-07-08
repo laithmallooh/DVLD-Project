@@ -93,7 +93,7 @@ namespace DVLDBusinessLayer
             return clsPeopleData.NationalNumberExists(nationalNumber);
         }
 
-
+            
         public static clsPerson Find(int PersonID)
         {
             string NationalNo = "", FirstName = "", SecondName = "", ThirdName = "", LastName = "", Email = "", Phone = "", Address = "", ImagePath = "";

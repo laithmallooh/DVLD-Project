@@ -16,19 +16,25 @@ namespace DVLDPresentationLayer
         {
 
         }
-            
+
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManagePeople ManagePeople = new ManagePeople();
             ManagePeople.Show();
         }
-         
+
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            LoginScreen LoginScreen = new LoginScreen();    
-            LoginScreen.Show(); 
+            LoginScreen LoginScreen = new LoginScreen();
+            LoginScreen.Show();
 
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageUsers ManageUsers = new ManageUsers();
+            ManageUsers.Show();
         }
     }
 }

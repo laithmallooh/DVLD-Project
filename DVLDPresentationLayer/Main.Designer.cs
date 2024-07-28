@@ -34,10 +34,10 @@
             driversToolStripMenuItem = new ToolStripMenuItem();
             usersToolStripMenuItem = new ToolStripMenuItem();
             accountSettingsToolStripMenuItem = new ToolStripMenuItem();
-            fontDialog1 = new FontDialog();
             currentUserInfoToolStripMenuItem = new ToolStripMenuItem();
             changePasswordToolStripMenuItem = new ToolStripMenuItem();
             signOutToolStripMenuItem = new ToolStripMenuItem();
+            fontDialog1 = new FontDialog();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -88,6 +88,7 @@
             usersToolStripMenuItem.Name = "usersToolStripMenuItem";
             usersToolStripMenuItem.Size = new Size(188, 100);
             usersToolStripMenuItem.Text = "Users";
+            usersToolStripMenuItem.Click += usersToolStripMenuItem_Click;
             // 
             // accountSettingsToolStripMenuItem
             // 

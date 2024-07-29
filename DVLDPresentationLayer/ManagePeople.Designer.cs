@@ -37,6 +37,7 @@
             label3 = new Label();
             label4 = new Label();
             colorDialog1 = new ColorDialog();
+            ctrlPersonCardWithFilter1 = new ctrlPersonCardWithFilter();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -119,11 +120,19 @@
             label4.Text = "No";
             label4.Click += label4_Click;
             // 
+            // ctrlPersonCardWithFilter1
+            // 
+            ctrlPersonCardWithFilter1.Location = new Point(0, 0);
+            ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            ctrlPersonCardWithFilter1.Size = new Size(1905, 903);
+            ctrlPersonCardWithFilter1.TabIndex = 9;
+            // 
             // ManagePeople
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1954, 920);
+            Controls.Add(ctrlPersonCardWithFilter1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(CloseButton);
@@ -150,5 +159,6 @@
         private Label label3;
         private Label label4;
         private ColorDialog colorDialog1;
+        private ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
     }
 }

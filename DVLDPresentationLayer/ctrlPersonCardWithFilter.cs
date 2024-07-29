@@ -32,6 +32,9 @@ namespace DVLDPresentationLayer
 
         }
 
-  
+        private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

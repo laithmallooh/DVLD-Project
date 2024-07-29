@@ -33,6 +33,8 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             textBox1 = new TextBox();
+            Filter = new GroupBox();
+            PersonInformation = new GroupBox();
             ctrlPersonCard1 = new ctrlPersonCard();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -81,7 +83,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox2.TabIndex = 40;
             pictureBox2.TabStop = false;
-            //pictureBox2.Click += pictureBox2_Click;
             // 
             // textBox1
             // 
@@ -90,11 +91,29 @@
             textBox1.Size = new Size(256, 31);
             textBox1.TabIndex = 41;
             // 
+            // Filter
+            // 
+            Filter.Location = new Point(37, 34);
+            Filter.Name = "Filter";
+            Filter.Size = new Size(1095, 103);
+            Filter.TabIndex = 43;
+            Filter.TabStop = false;
+            Filter.Text = "Filter";
+            // 
+            // PersonInformation
+            // 
+            PersonInformation.Location = new Point(37, 175);
+            PersonInformation.Name = "PersonInformation";
+            PersonInformation.Size = new Size(1095, 375);
+            PersonInformation.TabIndex = 44;
+            PersonInformation.TabStop = false;
+            PersonInformation.Text = "Person Information";
+            // 
             // ctrlPersonCard1
             // 
-            ctrlPersonCard1.Location = new Point(37, 160);
+            ctrlPersonCard1.Location = new Point(43, 205);
             ctrlPersonCard1.Name = "ctrlPersonCard1";
-            ctrlPersonCard1.Size = new Size(1182, 367);
+            ctrlPersonCard1.Size = new Size(1083, 339);
             ctrlPersonCard1.TabIndex = 42;
             // 
             // ctrlPersonCardWithFilter
@@ -107,8 +126,11 @@
             Controls.Add(pictureBox1);
             Controls.Add(label10);
             Controls.Add(FindBy);
+            Controls.Add(Filter);
+            Controls.Add(PersonInformation);
             Name = "ctrlPersonCardWithFilter";
-            Size = new Size(1270, 602);
+            Size = new Size(1174, 602);
+            Load += ctrlPersonCardWithFilter_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
@@ -122,6 +144,8 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private TextBox textBox1;
+        private GroupBox Filter;
+        private GroupBox PersonInformation;
         private ctrlPersonCard ctrlPersonCard1;
     }
 }

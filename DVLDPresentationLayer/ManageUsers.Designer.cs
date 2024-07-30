@@ -32,7 +32,7 @@
             label3 = new Label();
             CloseButton = new Button();
             usersDataGridView = new DataGridView();
-            addPerson = new Button();
+            addUser = new Button();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             colorDialog1 = new ColorDialog();
@@ -86,14 +86,15 @@
             usersDataGridView.Size = new Size(1338, 692);
             usersDataGridView.TabIndex = 12;
             // 
-            // addPerson
+            // addUser
             // 
-            addPerson.Image = Properties.Resources.icons8_add_user_48;
-            addPerson.Location = new Point(1294, 265);
-            addPerson.Name = "addPerson";
-            addPerson.Size = new Size(56, 65);
-            addPerson.TabIndex = 11;
-            addPerson.UseVisualStyleBackColor = true;
+            addUser.Image = Properties.Resources.icons8_add_user_48;
+            addUser.Location = new Point(1294, 265);
+            addUser.Name = "addUser";
+            addUser.Size = new Size(56, 65);
+            addUser.TabIndex = 11;
+            addUser.UseVisualStyleBackColor = true;
+            addUser.Click += addPerson_Click;
             // 
             // label1
             // 
@@ -150,7 +151,7 @@
             Controls.Add(label3);
             Controls.Add(CloseButton);
             Controls.Add(usersDataGridView);
-            Controls.Add(addPerson);
+            Controls.Add(addUser);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Name = "ManageUsers";
@@ -167,7 +168,7 @@
         private Label label3;
         private Button CloseButton;
         private DataGridView usersDataGridView;
-        private Button addPerson;
+        private Button addUser;
         private Label label1;
         private PictureBox pictureBox1;
         private ColorDialog colorDialog1;

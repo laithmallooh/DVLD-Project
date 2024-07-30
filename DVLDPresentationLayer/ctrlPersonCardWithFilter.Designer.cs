@@ -38,6 +38,7 @@
             ctrlPersonCard1 = new ctrlPersonCard();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            PersonInformation.SuspendLayout();
             SuspendLayout();
             // 
             // FindBy
@@ -102,6 +103,7 @@
             // 
             // PersonInformation
             // 
+            PersonInformation.Controls.Add(ctrlPersonCard1);
             PersonInformation.Location = new Point(37, 175);
             PersonInformation.Name = "PersonInformation";
             PersonInformation.Size = new Size(1095, 375);
@@ -111,16 +113,15 @@
             // 
             // ctrlPersonCard1
             // 
-            ctrlPersonCard1.Location = new Point(43, 205);
+            ctrlPersonCard1.Location = new Point(0, 30);
             ctrlPersonCard1.Name = "ctrlPersonCard1";
-            ctrlPersonCard1.Size = new Size(1083, 339);
-            ctrlPersonCard1.TabIndex = 42;
+            ctrlPersonCard1.Size = new Size(1074, 311);
+            ctrlPersonCard1.TabIndex = 0;
             // 
             // ctrlPersonCardWithFilter
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(ctrlPersonCard1);
             Controls.Add(textBox1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -133,6 +134,7 @@
             Load += ctrlPersonCardWithFilter_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            PersonInformation.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }

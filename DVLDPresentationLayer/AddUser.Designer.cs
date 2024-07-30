@@ -33,17 +33,17 @@
             NextButton = new Button();
             ctrlPersonCardWithFilter1 = new ctrlPersonCardWithFilter();
             LoginInfo = new TabPage();
+            checkBox1 = new CheckBox();
+            textBox4 = new TextBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            NationalNo = new Label();
             SaveButton = new Button();
             CloseButton = new Button();
-            NationalNo = new Label();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            checkBox1 = new CheckBox();
             label4 = new Label();
             tabControl1.SuspendLayout();
             PersonalInfo.SuspendLayout();
@@ -57,7 +57,7 @@
             tabControl1.Location = new Point(34, 92);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1171, 645);
+            tabControl1.Size = new Size(1199, 655);
             tabControl1.TabIndex = 0;
             // 
             // PersonalInfo
@@ -67,7 +67,7 @@
             PersonalInfo.Location = new Point(4, 34);
             PersonalInfo.Name = "PersonalInfo";
             PersonalInfo.Padding = new Padding(3);
-            PersonalInfo.Size = new Size(1163, 607);
+            PersonalInfo.Size = new Size(1191, 617);
             PersonalInfo.TabIndex = 0;
             PersonalInfo.Text = "Personal Info";
             PersonalInfo.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@
             NextButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             NextButton.Image = Properties.Resources.next;
             NextButton.ImageAlign = ContentAlignment.MiddleRight;
-            NextButton.Location = new Point(956, 538);
+            NextButton.Location = new Point(956, 561);
             NextButton.Name = "NextButton";
             NextButton.Size = new Size(152, 49);
             NextButton.TabIndex = 1;
@@ -86,9 +86,9 @@
             // 
             // ctrlPersonCardWithFilter1
             // 
-            ctrlPersonCardWithFilter1.Location = new Point(3, 6);
+            ctrlPersonCardWithFilter1.Location = new Point(3, 3);
             ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            ctrlPersonCardWithFilter1.Size = new Size(1123, 625);
+            ctrlPersonCardWithFilter1.Size = new Size(1170, 559);
             ctrlPersonCardWithFilter1.TabIndex = 0;
             // 
             // LoginInfo
@@ -105,10 +105,88 @@
             LoginInfo.Location = new Point(4, 34);
             LoginInfo.Name = "LoginInfo";
             LoginInfo.Padding = new Padding(3);
-            LoginInfo.Size = new Size(1163, 607);
+            LoginInfo.Size = new Size(1191, 617);
             LoginInfo.TabIndex = 1;
             LoginInfo.Text = "Login Info";
             LoginInfo.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(322, 413);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(104, 29);
+            checkBox1.TabIndex = 10;
+            checkBox1.Text = "Is Active";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(322, 329);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(150, 31);
+            textBox4.TabIndex = 9;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(322, 277);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(150, 31);
+            textBox3.TabIndex = 8;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(322, 218);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(150, 31);
+            textBox2.TabIndex = 7;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(322, 161);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(150, 31);
+            textBox1.TabIndex = 6;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(90, 332);
+            label3.Name = "label3";
+            label3.Size = new Size(194, 28);
+            label3.TabIndex = 5;
+            label3.Text = "Confirm Password :";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(90, 277);
+            label2.Name = "label2";
+            label2.Size = new Size(112, 28);
+            label2.TabIndex = 4;
+            label2.Text = "Password :";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(90, 221);
+            label1.Name = "label1";
+            label1.Size = new Size(127, 28);
+            label1.TabIndex = 3;
+            label1.Text = "User Name :";
+            // 
+            // NationalNo
+            // 
+            NationalNo.AutoSize = true;
+            NationalNo.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NationalNo.Location = new Point(90, 164);
+            NationalNo.Name = "NationalNo";
+            NationalNo.Size = new Size(92, 28);
+            NationalNo.TabIndex = 2;
+            NationalNo.Text = "User ID :";
             // 
             // SaveButton
             // 
@@ -133,84 +211,7 @@
             CloseButton.TabIndex = 3;
             CloseButton.Text = "Close";
             CloseButton.UseVisualStyleBackColor = true;
-            // 
-            // NationalNo
-            // 
-            NationalNo.AutoSize = true;
-            NationalNo.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NationalNo.Location = new Point(90, 164);
-            NationalNo.Name = "NationalNo";
-            NationalNo.Size = new Size(92, 28);
-            NationalNo.TabIndex = 2;
-            NationalNo.Text = "User ID :";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(90, 221);
-            label1.Name = "label1";
-            label1.Size = new Size(127, 28);
-            label1.TabIndex = 3;
-            label1.Text = "User Name :";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(90, 277);
-            label2.Name = "label2";
-            label2.Size = new Size(112, 28);
-            label2.TabIndex = 4;
-            label2.Text = "Password :";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(90, 332);
-            label3.Name = "label3";
-            label3.Size = new Size(194, 28);
-            label3.TabIndex = 5;
-            label3.Text = "Confirm Password :";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(322, 161);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(322, 218);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 7;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(322, 277);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(150, 31);
-            textBox3.TabIndex = 8;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(322, 329);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(150, 31);
-            textBox4.TabIndex = 9;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(322, 413);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(104, 29);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "Is Active";
-            checkBox1.UseVisualStyleBackColor = true;
+            CloseButton.Click += CloseButton_Click;
             // 
             // label4
             // 
@@ -226,7 +227,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1225, 823);
+            ClientSize = new Size(1293, 823);
             Controls.Add(label4);
             Controls.Add(CloseButton);
             Controls.Add(SaveButton);

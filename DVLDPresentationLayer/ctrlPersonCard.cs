@@ -64,7 +64,7 @@ namespace DVLDPresentationLayer
         private String ShowCountry(clsPerson person)
         {
 
-        switch (person.NationalityCountryID)
+            switch (person.NationalityCountryID)
             {
                 case 1:
                     return "Jordan";
@@ -126,7 +126,7 @@ namespace DVLDPresentationLayer
                     return "Male";
                 case 2:
                     return "Female";
-         
+
             }
 
 
@@ -134,6 +134,11 @@ namespace DVLDPresentationLayer
 
         }
         private void ctrlPersonCard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

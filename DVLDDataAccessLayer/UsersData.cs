@@ -69,29 +69,22 @@ namespace DVLDDataAccessLayer
             return dt;
         }
 
-        public static int AddNewPerson(string NationalNo, string FirstName, string SecondName,
-             string ThirdName, string LastName, string Email, string Phone, string Address, DateTime DateOfBirth, int Gendor, string ImagePath, int NationalityCountryID)
+        public static int AddNewUser(int UserID, int PersonID, string FullName, string UserName, string Password, bool IsActive)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO People (NationalNo, FirstName, SecondName, ThirdName, LastName, Email , Phone, Address , DateOfBirth ,Gendor , ImagePath , NationalityCountryID )
-             VALUES (@NationalNo, @FirstName, @SecondName , @ThirdName , @LastName, @Email , @Phone, @Address,@DateOfBirth, @Gendor,@ImagePath , @NationalityCountryID);
+            string query = @"INSERT INTO People (UserID, PersonID, FullName, Password, IsActive )
+             VALUES (@UserID, @PersonID, @FullName , @Password , @IsActive);
              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@NationalNo", NationalNo);
-            command.Parameters.AddWithValue("@FirstName", FirstName);
-            command.Parameters.AddWithValue("@SecondName", SecondName);
-            command.Parameters.AddWithValue("@ThirdName", ThirdName);
-            command.Parameters.AddWithValue("@LastName", LastName);
-            command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            command.Parameters.AddWithValue("@Gendor", Gendor); // Check the spelling of Gendor here
-            command.Parameters.AddWithValue("@Address", Address);
-            command.Parameters.AddWithValue("@Phone", Phone);
-            command.Parameters.AddWithValue("@Email", Email);
-            command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@FullName", FullName);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", IsActive);
 
             try
             {
@@ -112,7 +105,7 @@ namespace DVLDDataAccessLayer
             catch (Exception ex)
             {
                 // Log the exception details
-                Console.WriteLine("Error in AddNewPerson: " + ex.Message);
+                Console.WriteLine("Error in AddNewUser: " + ex.Message);
                 if (ex.InnerException != null)
                 {
                     Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
@@ -123,43 +116,29 @@ namespace DVLDDataAccessLayer
 
 
 
-        public static bool UpdatePerson(int PersonID, string NationalNo, string FirstName, string SecondName,
-              string ThirdName, string LastName, string Email, string Phone, string Address, DateTime DateOfBirth, int Gendor, string ImagePath, int NationalityCountryID)
+        public static bool UpdateUser(int UserID, int PersonID, string FullName, string UserName, string Password, bool IsActive)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"UPDATE People  
                      SET 
-                         NationalNo = @NationalNo,
-                         FirstName = @FirstName, 
-                         SecondName = @SecondName,
-                         ThirdName = @ThirdName,
-                         LastName = @LastName, 
-                         Email = @Email, 
-                         Phone = @Phone, 
-                         Address = @Address, 
-                         DateOfBirth = @DateOfBirth,
-                         Gendor = @Gendor,
-                         NationalityCountryID = @NationalityCountryID,
-                         ImagePath = @ImagePath
-                     WHERE PersonID = @PersonID;";
+                         PersonID = @PersonID,
+                         FullName = @FullName, 
+                         UserName = @UserName,
+                         Password = @Password,
+                         IsActive = @IsActive
+                      
+                     WHERE UserID = @UserID;";
 
             SqlCommand command = new SqlCommand(query, connection);
 
+            command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@NationalNo", NationalNo);
-            command.Parameters.AddWithValue("@FirstName", FirstName);
-            command.Parameters.AddWithValue("@SecondName", SecondName);
-            command.Parameters.AddWithValue("@ThirdName", ThirdName);
-            command.Parameters.AddWithValue("@LastName", LastName);
-            command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            command.Parameters.AddWithValue("@Gendor", Gendor);
-            command.Parameters.AddWithValue("@Address", Address);
-            command.Parameters.AddWithValue("@Phone", Phone);
-            command.Parameters.AddWithValue("@Email", Email);
-            command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            command.Parameters.AddWithValue("@FullName", FullName);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", IsActive);
+
 
             try
             {
@@ -183,7 +162,7 @@ namespace DVLDDataAccessLayer
 
 
 
-        public static bool DeletePerson(int PersonID)
+        public static bool DeleteUser(int UserID)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -206,7 +185,7 @@ namespace DVLDDataAccessLayer
                 )
             )";
                 SqlCommand deleteTestAppointmentsCommand = new SqlCommand(deleteTestAppointmentsQuery, connection, transaction);
-                deleteTestAppointmentsCommand.Parameters.AddWithValue("@PersonID", PersonID);
+                deleteTestAppointmentsCommand.Parameters.AddWithValue("@UserID", UserID);
                 deleteTestAppointmentsCommand.ExecuteNonQuery();
 
                 // Delete from LocalDrivingLicenseApplications table next
@@ -217,7 +196,7 @@ namespace DVLDDataAccessLayer
                 WHERE ApplicantPersonID = @PersonID
             )";
                 SqlCommand deleteLocalDrivingLicenseApplicationsCommand = new SqlCommand(deleteLocalDrivingLicenseApplicationsQuery, connection, transaction);
-                deleteLocalDrivingLicenseApplicationsCommand.Parameters.AddWithValue("@PersonID", PersonID);
+                deleteLocalDrivingLicenseApplicationsCommand.Parameters.AddWithValue("@UserID", UserID);
                 deleteLocalDrivingLicenseApplicationsCommand.ExecuteNonQuery();
 
                 // Delete from Licenses table next
@@ -228,7 +207,7 @@ namespace DVLDDataAccessLayer
                 WHERE ApplicantPersonID = @PersonID
             )";
                 SqlCommand deleteLicensesCommand = new SqlCommand(deleteLicensesQuery, connection, transaction);
-                deleteLicensesCommand.Parameters.AddWithValue("@PersonID", PersonID);
+                deleteLicensesCommand.Parameters.AddWithValue("@UserID", UserID);
                 deleteLicensesCommand.ExecuteNonQuery();
 
                 // Delete from Applications table next
@@ -236,7 +215,7 @@ namespace DVLDDataAccessLayer
             DELETE FROM Applications 
             WHERE ApplicantPersonID = @PersonID";
                 SqlCommand deleteApplicationsCommand = new SqlCommand(deleteApplicationsQuery, connection, transaction);
-                deleteApplicationsCommand.Parameters.AddWithValue("@PersonID", PersonID);
+                deleteApplicationsCommand.Parameters.AddWithValue("@UserID", UserID);
                 deleteApplicationsCommand.ExecuteNonQuery();
 
                 // Finally, delete from People table
@@ -244,7 +223,7 @@ namespace DVLDDataAccessLayer
             DELETE FROM People 
             WHERE PersonID = @PersonID";
                 SqlCommand deletePeopleCommand = new SqlCommand(deletePeopleQuery, connection, transaction);
-                deletePeopleCommand.Parameters.AddWithValue("@PersonID", PersonID);
+                deletePeopleCommand.Parameters.AddWithValue("@UserID", UserID);
                 rowsAffected = deletePeopleCommand.ExecuteNonQuery();
 
                 transaction.Commit();
@@ -264,11 +243,11 @@ namespace DVLDDataAccessLayer
 
 
 
-        public static bool GetPersonInfoByID(int PersonID, ref string NationalNo, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string Email, ref string Phone, ref string Address, ref DateTime DateOfBirth, ref int Gendor, ref string ImagePath, ref int NationalityCountryID)
+        public static bool GetUserInfoByID(int UserID, string PersonID,  ref string FullName, ref string UserName, ref string Password, ref bool IsActive)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM People WHERE PersonID = @PersonID";
+            string query = "SELECT * FROM People WHERE UserID = @UserID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
 
@@ -280,18 +259,13 @@ namespace DVLDDataAccessLayer
                 if (reader.Read())
                 {
                     isFound = true;
-                    NationalNo = reader["NationalNo"]?.ToString();
-                    FirstName = reader["FirstName"]?.ToString();
-                    SecondName = reader["SecondName"]?.ToString();
-                    ThirdName = reader["ThirdName"]?.ToString();
-                    LastName = reader["LastName"]?.ToString();
-                    Email = reader["Email"]?.ToString();
-                    Phone = reader["Phone"]?.ToString();
-                    Address = reader["Address"]?.ToString();
-                    DateOfBirth = reader["DateOfBirth"] != DBNull.Value ? (DateTime)reader["DateOfBirth"] : DateTime.MinValue;
-                    Gendor = reader["Gendor"] != DBNull.Value ? Convert.ToInt32(reader["Gendor"]) : 0;
-                    ImagePath = reader["ImagePath"]?.ToString();
-                    NationalityCountryID = reader["NationalityCountryID"] != DBNull.Value ? Convert.ToInt32(reader["NationalityCountryID"]) : -1;
+                    // Assigning the values with proper type casting
+                    UserID = Convert.ToInt32(reader["UserID"]);
+                    PersonID = reader["PersonID"].ToString();
+                    FullName = reader["FullName"].ToString();
+                    UserName = reader["UserName"].ToString();
+                    Password = reader["Password"].ToString();
+                    IsActive = Convert.ToBoolean(reader["IsActive"]);
                 }
 
                 reader.Close();

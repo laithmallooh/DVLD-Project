@@ -441,5 +441,11 @@ namespace DVLDPresentationLayer
         {
             this.Close();
         }
+
+        private void addPerson_Click(object sender, EventArgs e)
+        {
+            AddUser AddUser = new AddUser();
+            AddUser.Show();
+        }
     }
 }

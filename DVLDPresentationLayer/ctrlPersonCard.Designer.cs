@@ -96,7 +96,7 @@
             // 
             Country.AutoSize = true;
             Country.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Country.Location = new Point(447, 258);
+            Country.Location = new Point(401, 258);
             Country.Name = "Country";
             Country.Size = new Size(153, 28);
             Country.TabIndex = 7;
@@ -106,7 +106,7 @@
             // 
             Phone.AutoSize = true;
             Phone.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Phone.Location = new Point(447, 199);
+            Phone.Location = new Point(401, 199);
             Phone.Name = "Phone";
             Phone.Size = new Size(154, 28);
             Phone.TabIndex = 6;
@@ -116,7 +116,7 @@
             // 
             DateOfBirth.AutoSize = true;
             DateOfBirth.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DateOfBirth.Location = new Point(447, 138);
+            DateOfBirth.Location = new Point(401, 138);
             DateOfBirth.Name = "DateOfBirth";
             DateOfBirth.Size = new Size(151, 28);
             DateOfBirth.TabIndex = 5;
@@ -126,7 +126,7 @@
             // 
             Email.AutoSize = true;
             Email.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Email.Location = new Point(447, 78);
+            Email.Location = new Point(401, 78);
             Email.Name = "Email";
             Email.Size = new Size(153, 28);
             Email.TabIndex = 4;
@@ -196,7 +196,7 @@
             // 
             EmailLabel.AutoSize = true;
             EmailLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            EmailLabel.Location = new Point(624, 78);
+            EmailLabel.Location = new Point(578, 78);
             EmailLabel.Name = "EmailLabel";
             EmailLabel.Size = new Size(39, 28);
             EmailLabel.TabIndex = 14;
@@ -206,7 +206,7 @@
             // 
             DateOfBirthLabel.AutoSize = true;
             DateOfBirthLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            DateOfBirthLabel.Location = new Point(624, 138);
+            DateOfBirthLabel.Location = new Point(578, 138);
             DateOfBirthLabel.Name = "DateOfBirthLabel";
             DateOfBirthLabel.Size = new Size(39, 28);
             DateOfBirthLabel.TabIndex = 15;
@@ -216,7 +216,7 @@
             // 
             PhoneLabel.AutoSize = true;
             PhoneLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            PhoneLabel.Location = new Point(624, 202);
+            PhoneLabel.Location = new Point(578, 202);
             PhoneLabel.Name = "PhoneLabel";
             PhoneLabel.Size = new Size(39, 28);
             PhoneLabel.TabIndex = 16;
@@ -226,7 +226,7 @@
             // 
             CountryLabel.AutoSize = true;
             CountryLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            CountryLabel.Location = new Point(624, 258);
+            CountryLabel.Location = new Point(578, 258);
             CountryLabel.Name = "CountryLabel";
             CountryLabel.Size = new Size(39, 28);
             CountryLabel.TabIndex = 17;
@@ -235,12 +235,13 @@
             // pictureBox1
             // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(807, 23);
+            pictureBox1.Location = new Point(772, 23);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(257, 266);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // fileSystemWatcher1
             // 
@@ -270,8 +271,8 @@
             Controls.Add(Gender);
             Controls.Add(NationalNo);
             Controls.Add(Name);
-            Name.Text = "ctrlPersonCard";
-            Size = new Size(1092, 322);
+            Name.Text = "Name";
+            Size = new Size(1043, 322);
             Load += ctrlPersonCard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();

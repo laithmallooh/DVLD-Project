@@ -26,31 +26,33 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
+        private System.Windows.Forms.Panel panel1; // Ensure this is declared
+
         private void InitializeComponent()
         {
-            FindBy = new ComboBox();
+            FindByComboBox = new ComboBox();
             label10 = new Label();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
-            textBox1 = new TextBox();
+            textInput = new TextBox();
             Filter = new GroupBox();
             PersonInformation = new GroupBox();
+            panel1 = new Panel();
             ctrlPersonCard1 = new ctrlPersonCard();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             PersonInformation.SuspendLayout();
             SuspendLayout();
             // 
-            // FindBy
+            // FindByComboBox
             // 
-            FindBy.DropDownStyle = ComboBoxStyle.DropDownList;
-            FindBy.FormattingEnabled = true;
-            FindBy.Items.AddRange(new object[] { "1", "2", "3" });
-            FindBy.Location = new Point(183, 77);
-            FindBy.Name = "FindBy";
-            FindBy.Size = new Size(256, 33);
-            FindBy.TabIndex = 0;
-            FindBy.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            FindByComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            FindByComboBox.FormattingEnabled = true;
+            FindByComboBox.Location = new Point(183, 77);
+            FindByComboBox.Name = "FindByComboBox";
+            FindByComboBox.Size = new Size(256, 33);
+            FindByComboBox.TabIndex = 0;
+            FindByComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label10
             // 
@@ -73,6 +75,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 39;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // pictureBox2
             // 
@@ -85,31 +88,39 @@
             pictureBox2.TabIndex = 40;
             pictureBox2.TabStop = false;
             // 
-            // textBox1
+            // textInput
             // 
-            textBox1.Location = new Point(455, 79);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(256, 31);
-            textBox1.TabIndex = 41;
+            textInput.Location = new Point(455, 79);
+            textInput.Name = "textInput";
+            textInput.Size = new Size(256, 31);
+            textInput.TabIndex = 41;
             // 
             // Filter
             // 
             Filter.Location = new Point(37, 34);
             Filter.Name = "Filter";
-            Filter.Size = new Size(1095, 103);
+            Filter.Size = new Size(1356, 103);
             Filter.TabIndex = 43;
             Filter.TabStop = false;
             Filter.Text = "Filter";
             // 
             // PersonInformation
             // 
+            PersonInformation.Controls.Add(panel1);
             PersonInformation.Controls.Add(ctrlPersonCard1);
             PersonInformation.Location = new Point(37, 175);
             PersonInformation.Name = "PersonInformation";
-            PersonInformation.Size = new Size(1095, 375);
+            PersonInformation.Size = new Size(1356, 375);
             PersonInformation.TabIndex = 44;
             PersonInformation.TabStop = false;
             PersonInformation.Text = "Person Information";
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(16, 23);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1334, 346);
+            panel1.TabIndex = 45;
             // 
             // ctrlPersonCard1
             // 
@@ -122,15 +133,15 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(textBox1);
+            Controls.Add(textInput);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(label10);
-            Controls.Add(FindBy);
+            Controls.Add(FindByComboBox);
             Controls.Add(Filter);
             Controls.Add(PersonInformation);
             Name = "ctrlPersonCardWithFilter";
-            Size = new Size(1174, 602);
+            Size = new Size(1435, 602);
             Load += ctrlPersonCardWithFilter_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -139,15 +150,18 @@
             PerformLayout();
         }
 
+
+
         #endregion
 
-        private ComboBox FindBy;
+        private ComboBox FindByComboBox;
         private Label label10;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private TextBox textBox1;
+        private TextBox textInput;
         private GroupBox Filter;
         private GroupBox PersonInformation;
         private ctrlPersonCard ctrlPersonCard1;
+        private Panel panelPersonDetails;
     }
 }

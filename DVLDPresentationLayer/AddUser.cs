@@ -26,5 +26,10 @@ namespace DVLDPresentationLayer
         {
             this.Close();
         }
+
+        private void ctrlPersonCardWithFilter1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

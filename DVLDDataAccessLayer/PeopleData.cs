@@ -306,6 +306,53 @@ namespace DVLDDataAccessLayer
         }
 
 
+
+        public static bool GetPersonInfoByNationalNo(string NationalNo, ref int PersonID, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string Email, ref string Phone, ref string Address, ref DateTime DateOfBirth, ref int Gendor, ref string ImagePath, ref int NationalityCountryID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT * FROM People WHERE NationalNo = @NationalNo";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    isFound = true;
+                    PersonID = reader["PersonID"] != DBNull.Value ? Convert.ToInt32(reader["PersonID"]) : 0;
+                    FirstName = reader["FirstName"]?.ToString();
+                    SecondName = reader["SecondName"]?.ToString();
+                    ThirdName = reader["ThirdName"]?.ToString();
+                    LastName = reader["LastName"]?.ToString();
+                    Email = reader["Email"]?.ToString();
+                    Phone = reader["Phone"]?.ToString();
+                    Address = reader["Address"]?.ToString();
+                    DateOfBirth = reader["DateOfBirth"] != DBNull.Value ? (DateTime)reader["DateOfBirth"] : DateTime.MinValue;
+                    Gendor = reader["Gendor"] != DBNull.Value ? Convert.ToInt32(reader["Gendor"]) : 0;
+                    ImagePath = reader["ImagePath"]?.ToString();
+                    NationalityCountryID = reader["NationalityCountryID"] != DBNull.Value ? Convert.ToInt32(reader["NationalityCountryID"]) : -1;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
         public bool ValidateUser(string username, string password)
         {
             string connectionString = clsDataAccessSettings.ConnectionString;

@@ -57,7 +57,7 @@
             tabControl1.Location = new Point(34, 92);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1199, 655);
+            tabControl1.Size = new Size(1519, 655);
             tabControl1.TabIndex = 0;
             // 
             // PersonalInfo
@@ -67,7 +67,7 @@
             PersonalInfo.Location = new Point(4, 34);
             PersonalInfo.Name = "PersonalInfo";
             PersonalInfo.Padding = new Padding(3);
-            PersonalInfo.Size = new Size(1191, 617);
+            PersonalInfo.Size = new Size(1511, 617);
             PersonalInfo.TabIndex = 0;
             PersonalInfo.Text = "Personal Info";
             PersonalInfo.UseVisualStyleBackColor = true;
@@ -88,8 +88,9 @@
             // 
             ctrlPersonCardWithFilter1.Location = new Point(3, 3);
             ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            ctrlPersonCardWithFilter1.Size = new Size(1170, 559);
+            ctrlPersonCardWithFilter1.Size = new Size(1512, 559);
             ctrlPersonCardWithFilter1.TabIndex = 0;
+            ctrlPersonCardWithFilter1.Load += ctrlPersonCardWithFilter1_Load;
             // 
             // LoginInfo
             // 
@@ -105,7 +106,7 @@
             LoginInfo.Location = new Point(4, 34);
             LoginInfo.Name = "LoginInfo";
             LoginInfo.Padding = new Padding(3);
-            LoginInfo.Size = new Size(1191, 617);
+            LoginInfo.Size = new Size(1511, 617);
             LoginInfo.TabIndex = 1;
             LoginInfo.Text = "Login Info";
             LoginInfo.UseVisualStyleBackColor = true;
@@ -227,7 +228,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1293, 823);
+            ClientSize = new Size(1565, 823);
             Controls.Add(label4);
             Controls.Add(CloseButton);
             Controls.Add(SaveButton);

@@ -19,12 +19,28 @@ namespace DVLDPresentationLayer
         public ctrlPersonCard()
         {
             InitializeComponent();
+            SetDefaultValues();
         }
 
         public ctrlPersonCard(clsPerson person) : this()
         {
             this.person = person;
             LoadPersonData();
+        }
+
+        private void SetDefaultValues()
+        {
+            // Set default or placeholder values
+            PersonIDLabel.Text = "N/A";
+            NameLabel.Text = "N/A";
+            NationalNoLabel.Text = "N/A";
+            DateOfBirthLabel.Text = "N/A";
+            AddressLabel.Text = "N/A";
+            GenderLabel.Text = "N/A";
+            PhoneLabel.Text = "N/A";
+            EmailLabel.Text = "N/A";
+            CountryLabel.Text = "N/A";
+            pictureBox1.Image = null; // Or set a default image
         }
 
         private void LoadPersonData()
@@ -110,6 +126,9 @@ namespace DVLDPresentationLayer
                     return "Djibouti";
                 case 22:
                     return "Comoros";
+                default: 
+                    return "Unknown";
+
             }
 
 
@@ -126,6 +145,9 @@ namespace DVLDPresentationLayer
                     return "Male";
                 case 2:
                     return "Female";
+                default: 
+                    return "Unknown";
+
 
             }
 
@@ -139,6 +161,11 @@ namespace DVLDPresentationLayer
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PersonIDLabel_Click(object sender, EventArgs e)
         {
 
         }

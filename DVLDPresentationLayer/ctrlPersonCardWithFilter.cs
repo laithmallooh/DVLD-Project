@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DVLDBusinessLayer;
+using System;
 using System.Windows.Forms;
 
 namespace DVLDPresentationLayer
@@ -15,26 +9,86 @@ namespace DVLDPresentationLayer
         public ctrlPersonCardWithFilter()
         {
             InitializeComponent();
+            InitializeDefaultPersonCard();
         }
 
-        private void fontDialog2_Apply(object sender, EventArgs e)
+        private void InitializeDefaultPersonCard()
         {
+            // Create an instance of ctrlPersonCard with default (empty) values
+            ctrlPersonCard defaultPersonCard = new ctrlPersonCard()
+            {
+                Dock = DockStyle.Fill
+            };
 
+            // Add ctrlPersonCard to the panel1
+            panel1.Controls.Add(defaultPersonCard);
         }
 
-        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
+            string selectedFilter = FindByComboBox.SelectedItem?.ToString();
+            string filterValue = textInput.Text;
 
+            if (!string.IsNullOrEmpty(filterValue))
+            {
+                try
+                {
+                    clsPerson person = null;
+
+                    if (selectedFilter == "PersonID" && int.TryParse(filterValue, out int personId))
+                    {
+                        person = clsPerson.Find(personId);
+                    }
+                    else if (selectedFilter == "NationalNo")
+                    {
+                        person = clsPerson.FindByNationalNo(filterValue);
+                    }
+
+                    if (person != null)
+                    {
+                        // Clear previous controls from panel1
+                        panel1.Controls.Clear();
+
+                        // Create an instance of ctrlPersonCard with the found person
+                        ctrlPersonCard ctrlPersonCard = new ctrlPersonCard(person)
+                        {
+                            Dock = DockStyle.Fill
+                        };
+
+                        // Add ctrlPersonCard to the panel1
+                        panel1.Controls.Add(ctrlPersonCard);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Person not found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error retrieving person data: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a value to search.");
+            }
         }
+
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Handle ComboBox selection change if needed
         }
 
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
         {
-
+            // Initialize ComboBox with filter options
+            FindByComboBox.Items.Add("PersonID");
+            FindByComboBox.Items.Add("NationalNo");
         }
+
+
     }
+
 }

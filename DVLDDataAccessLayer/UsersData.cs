@@ -69,7 +69,7 @@ namespace DVLDDataAccessLayer
             return dt;
         }
 
-        public static int AddNewUser(int UserID, int PersonID, string FullName, string UserName, string Password, bool IsActive)
+        public static int AddNewUser( int PersonID, string UserName, string Password, bool IsActive)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -79,9 +79,7 @@ namespace DVLDDataAccessLayer
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@FullName", FullName);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@IsActive", IsActive);

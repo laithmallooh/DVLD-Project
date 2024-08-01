@@ -33,11 +33,10 @@
             NextButton = new Button();
             ctrlPersonCardWithFilter1 = new ctrlPersonCardWithFilter();
             LoginInfo = new TabPage();
-            checkBox1 = new CheckBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            IsActiveCheckBox = new CheckBox();
+            ConfirmPasswordInput = new TextBox();
+            PasswordInput = new TextBox();
+            UserNameInput = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -45,6 +44,7 @@
             SaveButton = new Button();
             CloseButton = new Button();
             label4 = new Label();
+            UserIDLabel = new Label();
             tabControl1.SuspendLayout();
             PersonalInfo.SuspendLayout();
             LoginInfo.SuspendLayout();
@@ -83,6 +83,7 @@
             NextButton.TabIndex = 1;
             NextButton.Text = "Next";
             NextButton.UseVisualStyleBackColor = true;
+            NextButton.Click += NextButton_Click;
             // 
             // ctrlPersonCardWithFilter1
             // 
@@ -94,11 +95,11 @@
             // 
             // LoginInfo
             // 
-            LoginInfo.Controls.Add(checkBox1);
-            LoginInfo.Controls.Add(textBox4);
-            LoginInfo.Controls.Add(textBox3);
-            LoginInfo.Controls.Add(textBox2);
-            LoginInfo.Controls.Add(textBox1);
+            LoginInfo.Controls.Add(UserIDLabel);
+            LoginInfo.Controls.Add(IsActiveCheckBox);
+            LoginInfo.Controls.Add(ConfirmPasswordInput);
+            LoginInfo.Controls.Add(PasswordInput);
+            LoginInfo.Controls.Add(UserNameInput);
             LoginInfo.Controls.Add(label3);
             LoginInfo.Controls.Add(label2);
             LoginInfo.Controls.Add(label1);
@@ -110,44 +111,39 @@
             LoginInfo.TabIndex = 1;
             LoginInfo.Text = "Login Info";
             LoginInfo.UseVisualStyleBackColor = true;
+            LoginInfo.Click += LoginInfo_Click;
             // 
-            // checkBox1
+            // IsActiveCheckBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(322, 413);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(104, 29);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "Is Active";
-            checkBox1.UseVisualStyleBackColor = true;
+            IsActiveCheckBox.AutoSize = true;
+            IsActiveCheckBox.Location = new Point(322, 413);
+            IsActiveCheckBox.Name = "IsActiveCheckBox";
+            IsActiveCheckBox.Size = new Size(104, 29);
+            IsActiveCheckBox.TabIndex = 10;
+            IsActiveCheckBox.Text = "Is Active";
+            IsActiveCheckBox.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // ConfirmPasswordInput
             // 
-            textBox4.Location = new Point(322, 329);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(150, 31);
-            textBox4.TabIndex = 9;
+            ConfirmPasswordInput.Location = new Point(322, 329);
+            ConfirmPasswordInput.Name = "ConfirmPasswordInput";
+            ConfirmPasswordInput.Size = new Size(150, 31);
+            ConfirmPasswordInput.TabIndex = 9;
             // 
-            // textBox3
+            // PasswordInput
             // 
-            textBox3.Location = new Point(322, 277);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(150, 31);
-            textBox3.TabIndex = 8;
+            PasswordInput.Location = new Point(322, 277);
+            PasswordInput.Name = "PasswordInput";
+            PasswordInput.Size = new Size(150, 31);
+            PasswordInput.TabIndex = 8;
             // 
-            // textBox2
+            // UserNameInput
             // 
-            textBox2.Location = new Point(322, 218);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(322, 161);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 6;
+            UserNameInput.Location = new Point(322, 218);
+            UserNameInput.Name = "UserNameInput";
+            UserNameInput.Size = new Size(150, 31);
+            UserNameInput.TabIndex = 7;
+            UserNameInput.TextChanged += textBox2_TextChanged;
             // 
             // label3
             // 
@@ -224,6 +220,16 @@
             label4.TabIndex = 4;
             label4.Text = "Add New User";
             // 
+            // UserIDLabel
+            // 
+            UserIDLabel.AutoSize = true;
+            UserIDLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            UserIDLabel.Location = new Point(322, 164);
+            UserIDLabel.Name = "UserIDLabel";
+            UserIDLabel.Size = new Size(51, 28);
+            UserIDLabel.TabIndex = 11;
+            UserIDLabel.Text = "N\\A";
+            // 
             // AddUser
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -257,11 +263,13 @@
         private Label label2;
         private Label label1;
         private Label NationalNo;
-        private CheckBox checkBox1;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private CheckBox IsActiveCheckBox;
+        private TextBox ConfirmPasswordInput;
+        private TextBox PasswordInput;
+        private TextBox UserNameInput;
         private Label label4;
+        private Label UserIDLabel;
+
+
     }
 }

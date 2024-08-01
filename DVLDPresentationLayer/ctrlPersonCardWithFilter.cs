@@ -6,6 +6,8 @@ namespace DVLDPresentationLayer
 {
     public partial class ctrlPersonCardWithFilter : UserControl
     {
+        private bool isPersonFound = false; // State variable to track if a person is found
+
         public ctrlPersonCardWithFilter()
         {
             InitializeComponent();
@@ -57,24 +59,33 @@ namespace DVLDPresentationLayer
 
                         // Add ctrlPersonCard to the panel1
                         panel1.Controls.Add(ctrlPersonCard);
+
+                        // Update the state to indicate a person is found
+                        isPersonFound = true;
                     }
                     else
                     {
                         MessageBox.Show("Person not found.");
+                        isPersonFound = false; // Update the state to indicate no person is found
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error retrieving person data: " + ex.Message);
+                    isPersonFound = false; // Update the state to indicate no person is found
                 }
             }
             else
             {
                 MessageBox.Show("Please enter a value to search.");
+                isPersonFound = false; // Update the state to indicate no person is found
             }
         }
 
-
+        public bool IsPersonSelected
+        {
+            get { return isPersonFound; }
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -88,7 +99,9 @@ namespace DVLDPresentationLayer
             FindByComboBox.Items.Add("NationalNo");
         }
 
+        private void Filter_Enter(object sender, EventArgs e)
+        {
 
+        }
     }
-
 }

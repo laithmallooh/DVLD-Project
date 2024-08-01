@@ -103,6 +103,7 @@
             Filter.TabIndex = 43;
             Filter.TabStop = false;
             Filter.Text = "Filter";
+            Filter.Enter += Filter_Enter;
             // 
             // PersonInformation
             // 

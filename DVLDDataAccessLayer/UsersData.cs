@@ -69,16 +69,14 @@ namespace DVLDDataAccessLayer
             return dt;
         }
 
-        public static int AddNewUser( int PersonID, string UserName, string Password, bool IsActive)
+        public static int AddNewUser(int PersonID, string UserName, string Password, bool IsActive)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"INSERT INTO People (UserID, PersonID, FullName, Password, IsActive )
-             VALUES (@UserID, @PersonID, @FullName , @Password , @IsActive);
-             SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO Users (PersonID, UserName, Password, IsActive)
+                     VALUES (@PersonID, @UserName, @Password, @IsActive);
+                     SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
@@ -87,9 +85,9 @@ namespace DVLDDataAccessLayer
             try
             {
                 connection.Open();
-
+                MessageBox.Show("Connection opened successfully.");
                 object result = command.ExecuteScalar();
-                connection.Close();
+                MessageBox.Show("Command executed successfully. Result: " + result);
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
@@ -97,18 +95,23 @@ namespace DVLDDataAccessLayer
                 }
                 else
                 {
+                    MessageBox.Show("Failed to retrieve inserted ID.");
                     return -1;
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception details
-                Console.WriteLine("Error in AddNewUser: " + ex.Message);
+                MessageBox.Show("Error in AddNewUser: " + ex.Message);
                 if (ex.InnerException != null)
                 {
-                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+                    MessageBox.Show("Inner Exception: " + ex.InnerException.Message);
                 }
                 return -1;
+            }
+            finally
+            {
+                connection.Close();
+                MessageBox.Show("Connection closed.");
             }
         }
 
@@ -118,43 +121,42 @@ namespace DVLDDataAccessLayer
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"UPDATE People  
+            string query = @"UPDATE Users  
                      SET 
                          PersonID = @PersonID,
-                         FullName = @FullName, 
                          UserName = @UserName,
                          Password = @Password,
                          IsActive = @IsActive
-                      
                      WHERE UserID = @UserID;";
 
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@FullName", FullName);
+            command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@IsActive", IsActive);
-
 
             try
             {
                 connection.Open();
+                MessageBox.Show("Connection opened successfully.");
                 rowsAffected = command.ExecuteNonQuery();
+                MessageBox.Show("Command executed successfully. Rows affected: " + rowsAffected);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in UpdatePerson: " + ex.Message);
+                MessageBox.Show("Error in UpdateUser: " + ex.Message);
                 return false;
             }
             finally
             {
                 connection.Close();
+                MessageBox.Show("Connection closed.");
             }
 
             return (rowsAffected > 0);
         }
+
 
 
 
@@ -166,74 +168,37 @@ namespace DVLDDataAccessLayer
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlTransaction transaction = null;
 
-
             try
             {
                 connection.Open();
+                MessageBox.Show("Connection opened successfully.");
                 transaction = connection.BeginTransaction();
 
-                // Delete from TestAppointments table first
-                string deleteTestAppointmentsQuery = @"
-            DELETE FROM TestAppointments 
-            WHERE LocalDrivingLicenseApplicationID IN (
-                SELECT ApplicationID FROM LocalDrivingLicenseApplications 
-                WHERE ApplicationID IN (
-                    SELECT ApplicationID FROM Applications 
-                    WHERE ApplicantPersonID = @PersonID
-                )
-            )";
-                SqlCommand deleteTestAppointmentsCommand = new SqlCommand(deleteTestAppointmentsQuery, connection, transaction);
-                deleteTestAppointmentsCommand.Parameters.AddWithValue("@UserID", UserID);
-                deleteTestAppointmentsCommand.ExecuteNonQuery();
-
-                // Delete from LocalDrivingLicenseApplications table next
-                string deleteLocalDrivingLicenseApplicationsQuery = @"
-            DELETE FROM LocalDrivingLicenseApplications 
-            WHERE ApplicationID IN (
-                SELECT ApplicationID FROM Applications 
-                WHERE ApplicantPersonID = @PersonID
-            )";
-                SqlCommand deleteLocalDrivingLicenseApplicationsCommand = new SqlCommand(deleteLocalDrivingLicenseApplicationsQuery, connection, transaction);
-                deleteLocalDrivingLicenseApplicationsCommand.Parameters.AddWithValue("@UserID", UserID);
-                deleteLocalDrivingLicenseApplicationsCommand.ExecuteNonQuery();
-
-                // Delete from Licenses table next
-                string deleteLicensesQuery = @"
-            DELETE FROM Licenses 
-            WHERE ApplicationID IN (
-                SELECT ApplicationID FROM Applications 
-                WHERE ApplicantPersonID = @PersonID
-            )";
-                SqlCommand deleteLicensesCommand = new SqlCommand(deleteLicensesQuery, connection, transaction);
-                deleteLicensesCommand.Parameters.AddWithValue("@UserID", UserID);
-                deleteLicensesCommand.ExecuteNonQuery();
-
-                // Delete from Applications table next
-                string deleteApplicationsQuery = @"
-            DELETE FROM Applications 
-            WHERE ApplicantPersonID = @PersonID";
-                SqlCommand deleteApplicationsCommand = new SqlCommand(deleteApplicationsQuery, connection, transaction);
-                deleteApplicationsCommand.Parameters.AddWithValue("@UserID", UserID);
-                deleteApplicationsCommand.ExecuteNonQuery();
-
-                // Finally, delete from People table
-                string deletePeopleQuery = @"
-            DELETE FROM People 
-            WHERE PersonID = @PersonID";
-                SqlCommand deletePeopleCommand = new SqlCommand(deletePeopleQuery, connection, transaction);
-                deletePeopleCommand.Parameters.AddWithValue("@UserID", UserID);
-                rowsAffected = deletePeopleCommand.ExecuteNonQuery();
+                string deleteQuery = @"
+            DELETE FROM Users WHERE UserID = @UserID";
+                SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection, transaction);
+                deleteCommand.Parameters.AddWithValue("@UserID", UserID);
+                rowsAffected = deleteCommand.ExecuteNonQuery();
+                MessageBox.Show("Command executed successfully. Rows affected: " + rowsAffected);
 
                 transaction.Commit();
+                MessageBox.Show("Transaction committed.");
             }
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Transaction rolled back.");
+                MessageBox.Show("Error in DeleteUser: " + ex.Message);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show("Inner Exception: " + ex.InnerException.Message);
+                }
+                return false;
             }
             finally
             {
                 connection.Close();
+                MessageBox.Show("Connection closed.");
             }
 
             return (rowsAffected > 0);
@@ -241,45 +206,52 @@ namespace DVLDDataAccessLayer
 
 
 
-        public static bool GetUserInfoByID(int UserID, string PersonID,  ref string FullName, ref string UserName, ref string Password, ref bool IsActive)
+        public static bool GetUserInfoByID(int UserID, ref string FullName, ref string UserName, ref string Password, ref bool IsActive)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM People WHERE UserID = @UserID";
+            string query = "SELECT * FROM Users WHERE UserID = @UserID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@UserID", UserID);
 
             try
             {
                 connection.Open();
+                MessageBox.Show("Connection opened successfully.");
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
                     isFound = true;
-                    // Assigning the values with proper type casting
-                    UserID = Convert.ToInt32(reader["UserID"]);
-                    PersonID = reader["PersonID"].ToString();
-                    FullName = reader["FullName"].ToString();
                     UserName = reader["UserName"].ToString();
                     Password = reader["Password"].ToString();
                     IsActive = Convert.ToBoolean(reader["IsActive"]);
+                    MessageBox.Show("User found: " + UserName);
                 }
-
+                else
+                {
+                    MessageBox.Show("User not found.");
+                }
                 reader.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error in GetUserInfoByID: " + ex.Message);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show("Inner Exception: " + ex.InnerException.Message);
+                }
                 isFound = false;
             }
             finally
             {
                 connection.Close();
+                MessageBox.Show("Connection closed.");
             }
 
             return isFound;
         }
+
 
 
         public bool ValidateUser(string username, string password)

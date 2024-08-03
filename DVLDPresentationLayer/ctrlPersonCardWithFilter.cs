@@ -7,12 +7,82 @@ namespace DVLDPresentationLayer
     public partial class ctrlPersonCardWithFilter : UserControl
     {
         private bool isPersonFound = false; // State variable to track if a person is found
+        private clsPerson selectedPerson; // Track the selected person object
+        public event EventHandler PersonSelectedChanged;
+
 
         public ctrlPersonCardWithFilter()
         {
             InitializeComponent();
             InitializeDefaultPersonCard();
+
+            // Hide the DataGridView if you don't want it visible
+
+            dgvPersons.Visible = false;
+
+
         }
+
+        // Property indicating if a person is found
+        public bool IsPersonFound => isPersonFound;
+
+        // Property indicating if a person is selected
+        public bool IsPersonSelected => selectedPerson != null;
+
+        // Property to get the selected person's ID
+        public int? SelectedPersonId => selectedPerson?.PersonID;
+
+
+
+
+        // This method should be called when a person is found or not found
+        private void OnPersonSelectedChanged()
+        {
+            bool personSelected = IsPersonSelected;
+            bool personFound = IsPersonFound;
+
+            // Debugging messages
+            MessageBox.Show($"OnPersonSelectedChanged: Person Selected = {personSelected}, Person Found = {personFound}");
+
+            PersonSelectedChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+
+
+
+
+        private void SetupDataGridView()
+        {
+            dgvPersons.Columns.Add("PersonID", "Person ID");
+            dgvPersons.Columns.Add("Name", "Name");
+            // Ensure dgvPersons is populated with data
+            // Example: dgvPersons.DataSource = GetPersonsData();
+        }
+
+
+        // Property to check if a person is selected
+
+
+
+
+
+        private void dgvPersons_SelectionChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("DataGridView selection changed."); // Debugging message
+            OnPersonSelectedChanged();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void InitializeDefaultPersonCard()
         {
@@ -26,6 +96,7 @@ namespace DVLDPresentationLayer
             panel1.Controls.Add(defaultPersonCard);
         }
 
+        // Call this method after updating `isPersonFound` in pictureBox1_Click
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             string selectedFilter = FindByComboBox.SelectedItem?.ToString();
@@ -48,44 +119,45 @@ namespace DVLDPresentationLayer
 
                     if (person != null)
                     {
-                        // Clear previous controls from panel1
                         panel1.Controls.Clear();
-
-                        // Create an instance of ctrlPersonCard with the found person
                         ctrlPersonCard ctrlPersonCard = new ctrlPersonCard(person)
                         {
                             Dock = DockStyle.Fill
                         };
-
-                        // Add ctrlPersonCard to the panel1
                         panel1.Controls.Add(ctrlPersonCard);
 
-                        // Update the state to indicate a person is found
+                        selectedPerson = person; // Set the selected person
                         isPersonFound = true;
+                        OnPersonSelectedChanged(); // Trigger event
+                        MessageBox.Show("Person found. Event triggered."); // Debug
                     }
                     else
                     {
                         MessageBox.Show("Person not found.");
-                        isPersonFound = false; // Update the state to indicate no person is found
+                        selectedPerson = null;
+                        isPersonFound = false;
+                        OnPersonSelectedChanged();
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error retrieving person data: " + ex.Message);
-                    isPersonFound = false; // Update the state to indicate no person is found
+                    selectedPerson = null;
+                    isPersonFound = false;
+                    OnPersonSelectedChanged();
                 }
             }
             else
             {
                 MessageBox.Show("Please enter a value to search.");
-                isPersonFound = false; // Update the state to indicate no person is found
+                selectedPerson = null;
+                isPersonFound = false;
+                OnPersonSelectedChanged();
             }
         }
 
-        public bool IsPersonSelected
-        {
-            get { return isPersonFound; }
-        }
+
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -100,6 +172,16 @@ namespace DVLDPresentationLayer
         }
 
         private void Filter_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

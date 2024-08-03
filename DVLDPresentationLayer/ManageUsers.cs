@@ -444,8 +444,20 @@ namespace DVLDPresentationLayer
 
         private void addPerson_Click(object sender, EventArgs e)
         {
-            AddUser AddUser = new AddUser();
-            AddUser.Show();
+            AddUser addUser = new AddUser();
+
+            // Attach the FormClosed event handler
+            addUser.FormClosed += AddUser_FormClosed;
+
+            addUser.Show();
         }
+
+        // Event handler for AddUser form closure
+        private void AddUser_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Refresh data when the AddUser form is closed
+            LoadData();
+        }
+
     }
 }

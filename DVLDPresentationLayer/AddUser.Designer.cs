@@ -33,6 +33,7 @@
             NextButton = new Button();
             ctrlPersonCardWithFilter1 = new ctrlPersonCardWithFilter();
             LoginInfo = new TabPage();
+            UserIDLabel = new Label();
             IsActiveCheckBox = new CheckBox();
             ConfirmPasswordInput = new TextBox();
             PasswordInput = new TextBox();
@@ -44,7 +45,6 @@
             SaveButton = new Button();
             CloseButton = new Button();
             label4 = new Label();
-            UserIDLabel = new Label();
             tabControl1.SuspendLayout();
             PersonalInfo.SuspendLayout();
             LoginInfo.SuspendLayout();
@@ -112,6 +112,16 @@
             LoginInfo.Text = "Login Info";
             LoginInfo.UseVisualStyleBackColor = true;
             LoginInfo.Click += LoginInfo_Click;
+            // 
+            // UserIDLabel
+            // 
+            UserIDLabel.AutoSize = true;
+            UserIDLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            UserIDLabel.Location = new Point(322, 164);
+            UserIDLabel.Name = "UserIDLabel";
+            UserIDLabel.Size = new Size(51, 28);
+            UserIDLabel.TabIndex = 11;
+            UserIDLabel.Text = "N\\A";
             // 
             // IsActiveCheckBox
             // 
@@ -196,6 +206,7 @@
             SaveButton.TabIndex = 2;
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = true;
+            SaveButton.Click += SaveButton_Click_1;
             // 
             // CloseButton
             // 
@@ -219,16 +230,6 @@
             label4.Size = new Size(294, 54);
             label4.TabIndex = 4;
             label4.Text = "Add New User";
-            // 
-            // UserIDLabel
-            // 
-            UserIDLabel.AutoSize = true;
-            UserIDLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            UserIDLabel.Location = new Point(322, 164);
-            UserIDLabel.Name = "UserIDLabel";
-            UserIDLabel.Size = new Size(51, 28);
-            UserIDLabel.TabIndex = 11;
-            UserIDLabel.Text = "N\\A";
             // 
             // AddUser
             // 

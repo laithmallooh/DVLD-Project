@@ -39,9 +39,11 @@
             PersonInformation = new GroupBox();
             panel1 = new Panel();
             ctrlPersonCard1 = new ctrlPersonCard();
+            dgvPersons = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             PersonInformation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvPersons).BeginInit();
             SuspendLayout();
             // 
             // FindByComboBox
@@ -94,6 +96,7 @@
             textInput.Name = "textInput";
             textInput.Size = new Size(256, 31);
             textInput.TabIndex = 41;
+            textInput.TextChanged += textInput_TextChanged;
             // 
             // Filter
             // 
@@ -130,6 +133,16 @@
             ctrlPersonCard1.Size = new Size(1074, 311);
             ctrlPersonCard1.TabIndex = 0;
             // 
+            // dgvPersons
+            // 
+            dgvPersons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPersons.Location = new Point(12, 12);
+            dgvPersons.Name = "dgvPersons";
+            dgvPersons.RowHeadersWidth = 62;
+            dgvPersons.Size = new Size(240, 150);
+            dgvPersons.TabIndex = 0;
+            dgvPersons.CellContentClick += dgvPersons_CellContentClick;
+            // 
             // ctrlPersonCardWithFilter
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -141,12 +154,14 @@
             Controls.Add(FindByComboBox);
             Controls.Add(Filter);
             Controls.Add(PersonInformation);
+            Controls.Add(dgvPersons);
             Name = "ctrlPersonCardWithFilter";
             Size = new Size(1435, 602);
             Load += ctrlPersonCardWithFilter_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             PersonInformation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvPersons).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,5 +179,6 @@
         private GroupBox PersonInformation;
         private ctrlPersonCard ctrlPersonCard1;
         private Panel panelPersonDetails;
+        private DataGridView dgvPersons;
     }
 }

@@ -23,36 +23,34 @@ namespace DVLDBusinessLayer
 
         public clsUser()
         {
-
-            this.UserID = -1;
-            this.PersonID = -1;
-            this.FullName = "";
-            this.UserName = "";
-            this.Password = "";
-            this.IsActive = false ;
-            this.Mode = enMode.AddNew;
-        }
-
-        private clsUser(int UserID, string PersonID, string FullName, string UserName ,string Password, bool IsActive)
-        {
             this.UserID = -1;
             this.PersonID = -1;
             this.FullName = "";
             this.UserName = "";
             this.Password = "";
             this.IsActive = false;
+            this.Mode = enMode.AddNew;
+        }
+
+        private clsUser(int UserID, int PersonID, string FullName, string UserName, string Password, bool IsActive)
+        {
+            this.UserID = UserID;
+            this.PersonID = PersonID;
+            this.FullName = FullName;
+            this.UserName = UserName;
+            this.Password = Password;
+            this.IsActive = IsActive;
             this.Mode = enMode.Update;
         }
 
 
-
-        private bool _UpdatePerson()
+        private bool _UpdateUser()
         {
             // Call the data access layer to update the person in the database
             return clsUsersData.UpdateUser(this.UserID, this.PersonID, this.FullName, this.UserName, this.Password, this.IsActive );
         }
 
-        private bool _AddNewPerson()
+        private bool _AddNewUser()
         {
             // Call the data access layer to add a new person to the database
             this.UserID = clsUsersData.AddNewUser(this.PersonID, this.UserName, this.Password, this.IsActive);
@@ -61,10 +59,10 @@ namespace DVLDBusinessLayer
         }
 
 
-        public static bool DeletePerson(int PersonID)
+        public static bool DeleteUser(int UserID)
         {
             MessageBox.Show(" clsPerson.DeletePerson(personId); business layer ");
-            return clsPeopleData.DeletePerson(PersonID);
+            return clsUsersData.DeleteUser(UserID);
         }
 
         public static bool NationalNumberExists(string nationalNumber)
@@ -75,19 +73,20 @@ namespace DVLDBusinessLayer
 
         public static clsUser Find(int UserID)
         {
-            string FullName = "", UserName = "", Password = "" , PersonID ="";
+            int PersonID = -1;
+            string FullName = "", UserName = "", Password = "";
             bool IsActive = false;
 
-            MessageBox.Show("Finding person with ID: " + PersonID);
+            MessageBox.Show("Finding user with ID: " + UserID);
 
-            if (clsUsersData.GetUserInfoByID(UserID , PersonID, ref FullName, ref UserName, ref Password ,ref IsActive ))
+            if (clsUsersData.GetUserInfoByID(UserID, ref FullName, ref UserName, ref Password, ref IsActive))
             {
-                MessageBox.Show("Person found: " + FullName);
+                MessageBox.Show("User found: " + FullName);
                 return new clsUser(UserID, PersonID, FullName, UserName, Password, IsActive);
             }
             else
             {
-                MessageBox.Show("Person with ID " + PersonID + " not found.");
+                MessageBox.Show("User not found.");
                 return null;
             }
         }
@@ -95,24 +94,20 @@ namespace DVLDBusinessLayer
 
         public bool Save()
         {
-
-            MessageBox.Show("Mode : " + Mode + " in save function in person class");
+            MessageBox.Show("Save method called. Mode: " + Mode);
 
             switch (Mode)
             {
                 case enMode.AddNew:
-                    // Logic to add new person record
-
-                    return _AddNewPerson();
+                    return _AddNewUser();
 
                 case enMode.Update:
-                    // Logic to update existing person record
-                    return _UpdatePerson();
+                    return _UpdateUser();
 
                 default:
-                    return false; // Handle unsupported modes or errors
+                    MessageBox.Show("Invalid mode.");
+                    return false;
             }
-
         }
 
 

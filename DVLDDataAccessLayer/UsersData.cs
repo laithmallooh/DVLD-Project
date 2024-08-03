@@ -162,47 +162,49 @@ namespace DVLDDataAccessLayer
 
 
 
-        public static bool DeleteUser(int UserID)
+        public static bool DeleteUser(int userID)
         {
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            SqlTransaction transaction = null;
 
-            try
+            // Use 'using' statements for automatic resource management
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                connection.Open();
-                MessageBox.Show("Connection opened successfully.");
-                transaction = connection.BeginTransaction();
+                SqlTransaction transaction = null;
 
-                string deleteQuery = @"
-            DELETE FROM Users WHERE UserID = @UserID";
-                SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection, transaction);
-                deleteCommand.Parameters.AddWithValue("@UserID", UserID);
-                rowsAffected = deleteCommand.ExecuteNonQuery();
-                MessageBox.Show("Command executed successfully. Rows affected: " + rowsAffected);
-
-                transaction.Commit();
-                MessageBox.Show("Transaction committed.");
-            }
-            catch (Exception ex)
-            {
-                transaction?.Rollback();
-                MessageBox.Show("Transaction rolled back.");
-                MessageBox.Show("Error in DeleteUser: " + ex.Message);
-                if (ex.InnerException != null)
+                try
                 {
-                    MessageBox.Show("Inner Exception: " + ex.InnerException.Message);
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+
+                    string deleteQuery = "DELETE FROM Users WHERE UserID = @UserID";
+
+                    using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection, transaction))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@UserID", userID);
+                        rowsAffected = deleteCommand.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
                 }
-                return false;
-            }
-            finally
-            {
-                connection.Close();
-                MessageBox.Show("Connection closed.");
+                catch (Exception ex)
+                {
+                    // Rollback the transaction if an error occurs
+                    transaction?.Rollback();
+
+                    // Log or display the error message
+                    MessageBox.Show("Error in DeleteUser: " + ex.Message);
+                    if (ex.InnerException != null)
+                    {
+                        MessageBox.Show("Inner Exception: " + ex.InnerException.Message);
+                    }
+
+                    return false;
+                }
             }
 
-            return (rowsAffected > 0);
+            return rowsAffected > 0;
         }
+
 
 
 

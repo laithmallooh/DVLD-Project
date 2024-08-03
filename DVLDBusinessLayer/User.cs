@@ -61,7 +61,7 @@ namespace DVLDBusinessLayer
 
         public static bool DeleteUser(int UserID)
         {
-            MessageBox.Show(" clsPerson.DeletePerson(personId); business layer ");
+            MessageBox.Show(" clsUser.DeleteUser(UserId); business layer ");
             return clsUsersData.DeleteUser(UserID);
         }
 

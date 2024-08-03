@@ -91,7 +91,7 @@
             ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
             ctrlPersonCardWithFilter1.Size = new Size(1512, 559);
             ctrlPersonCardWithFilter1.TabIndex = 0;
-            ctrlPersonCardWithFilter1.Load += ctrlPersonCardWithFilter1_Load;
+           // ctrlPersonCardWithFilter1.Load += ctrlPersonCardWithFilter1_Load;
             // 
             // LoginInfo
             // 
@@ -111,7 +111,7 @@
             LoginInfo.TabIndex = 1;
             LoginInfo.Text = "Login Info";
             LoginInfo.UseVisualStyleBackColor = true;
-            LoginInfo.Click += LoginInfo_Click;
+          //  LoginInfo.Click += LoginInfo_Click;
             // 
             // UserIDLabel
             // 
@@ -153,7 +153,7 @@
             UserNameInput.Name = "UserNameInput";
             UserNameInput.Size = new Size(150, 31);
             UserNameInput.TabIndex = 7;
-            UserNameInput.TextChanged += textBox2_TextChanged;
+           // UserNameInput.TextChanged += textBox2_TextChanged;
             // 
             // label3
             // 
@@ -206,7 +206,7 @@
             SaveButton.TabIndex = 2;
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = true;
-            SaveButton.Click += SaveButton_Click_1;
+           // SaveButton.Click += SaveButton_Click_1;
             // 
             // CloseButton
             // 

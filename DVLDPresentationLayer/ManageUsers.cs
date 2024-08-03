@@ -63,7 +63,7 @@ namespace DVLDPresentationLayer
             contextMenuStrip.Items.Add("Show Details", null, ShowDetailsItem_Click);
             contextMenuStrip.Items.Add("Edit", null, EditMenuItem_Click);
             contextMenuStrip.Items.Add("Delete", null, DeleteMenuItem_Click);
-            contextMenuStrip.Items.Add("Add Person", null, AddPersonItem_Click);
+            contextMenuStrip.Items.Add("Add User", null, AddUserItem_Click);
 
             usersDataGridView.ContextMenuStrip = contextMenuStrip;
             usersDataGridView.MouseDown += usersDataGridView_MouseDown;
@@ -287,11 +287,11 @@ namespace DVLDPresentationLayer
             }
         }
 
-        private void AddPersonItem_Click(object sender, EventArgs e)
+        private void AddUserItem_Click(object sender, EventArgs e)
         {
-            using (AddPerson addPerson = new AddPerson())
+            using (AddUser AddUser = new AddUser())
             {
-                if (addPerson.ShowDialog() == DialogResult.OK)
+                if (AddUser.ShowDialog() == DialogResult.OK)
                 {
                     // Refresh data after closing AddPerson form
                     LoadData(); // Assuming LoadData() is a method that reloads your people data
@@ -308,39 +308,28 @@ namespace DVLDPresentationLayer
                 DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
                 object firstColumnValue = selectedRow.Cells[0].Value;
 
-                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int personId))
+                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int UserID))
                 {
                     // Retrieve person's data from business layer
-                    clsPerson person = clsPerson.Find(personId);
+                    clsUser User = clsUser.Find(UserID);
 
-                    if (person != null)
+                    if (User != null)
                     {
                         // Set mode to Update
-                        person.Mode = clsPerson.enMode.Update;
+                        User.Mode = clsUser.enMode.Update;
 
                         // Open AddPerson form with person data
-                        AddPerson addPersonForm = new AddPerson(person);
-                        addPersonForm.ShowDialog();
+                        AddUser addUserForm = new AddUser(User);
+                        addUserForm.ShowDialog();
 
-                        // Handle image operations based on AddPerson form state
-                        if (addPersonForm.ImageRemoved)
-                        {
-                            // Remove person's image from file system
-                            // RemovePersonImage(person.ImagePath);
-                            person.ImagePath = ""; // Clear image path in person object
-                        }
-                        else if (addPersonForm.ImageUpdated)
-                        {
-                            // Save new selected image for person
-                            // SavePersonImage(person, addPersonForm.SelectedImagePath);
-                        }
+                   
 
                         // Refresh data after editing
                         LoadData(); // Example: Refresh data after editing
                     }
                     else
                     {
-                        MessageBox.Show("Person with ID " + personId + " not found.");
+                        MessageBox.Show("User with ID " + UserID + " not found.");
                     }
                 }
             }
@@ -354,15 +343,15 @@ namespace DVLDPresentationLayer
                 DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
                 object firstColumnValue = selectedRow.Cells[0].Value;
 
-                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int personId))
+                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int UserID))
                 {
                     // Retrieve person's data from business layer
-                    clsPerson person = clsPerson.Find(personId);
+                    clsUser User = clsUser.Find(UserID);
 
-                    if (person != null)
+                    if (User != null)
                     {
                         // Delete person from database or business layer
-                        bool deleteResult = clsPerson.DeletePerson(personId);
+                        bool deleteResult = clsUser.DeleteUser(UserID);
 
                         if (deleteResult)
                         {
@@ -370,16 +359,16 @@ namespace DVLDPresentationLayer
                             // DeletePersonImage(person.ImagePath);
 
                             // Display success message
-                            MessageBox.Show("Person and associated image deleted successfully.");
+                            MessageBox.Show("User deleted successfully.");
                         }
                         else
                         {
-                            MessageBox.Show("Failed to delete person.");
+                            MessageBox.Show("Failed to delete User.");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Person with ID " + personId + " not found.");
+                        MessageBox.Show("User with ID " + UserID + " not found.");
                     }
                 }
                 else

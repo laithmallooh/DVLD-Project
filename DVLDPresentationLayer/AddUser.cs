@@ -1,23 +1,17 @@
 ﻿using DVLDBusinessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DVLDPresentationLayer.AddPerson;
-
 
 namespace DVLDPresentationLayer
 {
     public partial class AddUser : Form
     {
-
         private ErrorProvider errorProvider1;
         private clsUser currentUser;
+
+        public enum enMode { AddNew = 0, Update = 1 };
+        public enMode Mode = enMode.AddNew;
 
         public AddUser()
         {
@@ -44,14 +38,36 @@ namespace DVLDPresentationLayer
             UpdateNextButtonState();
         }
 
-
-
-        private void ctrlPersonCardWithFilter1_Load(object sender, EventArgs e)
+        // Constructor for editing an existing person
+        public AddUser(clsUser user) : this()
         {
-            // Code for control load event, if needed
+            if (user != null)
+            {
+                label4.Text = "Edit User";
+                Mode = enMode.Update;
+
+                this.currentUser = user;
+                LoadUserData();
+
+                // Disable search controls
+                DisableSearchControls();
+            }
         }
 
+        // Method to disable search controls
+        private void DisableSearchControls()
+        {
+            ctrlPersonCardWithFilter1.Enabled = false; // Assuming ctrlPersonCardWithFilter1 is the search control
+            NextButton.Enabled = false; // Disable next button if it navigates the tabs
+        }
 
+        // Method to load existing person data into form fields
+        private void LoadUserData()
+        {
+            UserNameInput.Text = currentUser.UserName;
+            PasswordInput.Text = currentUser.Password;
+            IsActiveCheckBox.Checked = currentUser.IsActive;
+        }
 
         private void UpdateNextButtonState()
         {
@@ -60,31 +76,22 @@ namespace DVLDPresentationLayer
 
             MessageBox.Show($"UpdateNextButtonState: Person Selected = {personSelected}, Person Found = {personFound}");
 
-            // Enable or disable the Next button based on both conditions
-            //NextButton.Enabled = personSelected && personFound;
-            NextButton.Enabled =  personFound;
-
+            NextButton.Enabled = personFound;
         }
-
-
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            // Ensure the TabControl has at least 2 tabs
             if (tabControl1.TabPages.Count > 1)
             {
-                // Switch to the second tab (index 1)
                 tabControl1.SelectedIndex = 1;
             }
         }
 
-        // Event handler for when person selection changes
         private void ctrlPersonCardWithFilter1_PersonSelectedChanged(object sender, EventArgs e)
         {
             UpdateNextButtonState();
             MessageBox.Show("Person selection changed."); // Debugging message
         }
-
 
         private bool IsPersonSelected
         {
@@ -94,21 +101,10 @@ namespace DVLDPresentationLayer
             }
         }
 
-
-
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Code for label1 click event, if needed
-        }
-
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-     
 
         private void UserNameInput_TextChanged(object sender, EventArgs e)
         {
@@ -159,42 +155,33 @@ namespace DVLDPresentationLayer
                 errorProvider1.SetError(PasswordInput, "Password must be at least 4 characters long.");
                 PasswordInput.BackColor = Color.LightCoral;
             }
-            else if (passwordsMatch) // Clear error if both checks pass
+            else if (passwordsMatch)
             {
                 errorProvider1.SetError(PasswordInput, "");
                 PasswordInput.BackColor = Color.White;
             }
         }
 
-
-
-
-        // Save button click event handler
         private void SaveButton_Click(object sender, EventArgs e)
         {
             if (ValidateInput())
             {
-                // Ensure all necessary fields are validated before saving
                 SaveUser();
             }
             else
             {
                 MessageBox.Show("Please fill in all required fields with valid data.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            //this.Close();
         }
 
         private void SaveUser()
         {
             MessageBox.Show("Saving user. Username: " + UserNameInput.Text);
 
-            // Get the selected person ID from ctrlPersonCardWithFilter
             int? selectedPersonId = ctrlPersonCardWithFilter1.SelectedPersonId;
 
             if (selectedPersonId.HasValue)
             {
-                // Use the selected person ID
                 currentUser.UserName = UserNameInput.Text;
                 currentUser.Password = PasswordInput.Text;
                 currentUser.IsActive = IsActiveCheckBox.Checked;
@@ -211,10 +198,9 @@ namespace DVLDPresentationLayer
                         {
                             MessageBox.Show("User saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Display user ID in UserIDLabel
                             UserIDLabel.Text = $"{currentUser.UserID}";
 
-                           // ClearForm();
+                            // Optional: ClearForm(); // If you want to clear the form after saving
                         }
                         else
                         {
@@ -232,7 +218,6 @@ namespace DVLDPresentationLayer
                 MessageBox.Show("No person selected. Please select a person before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
 
         private bool ValidateInput()
         {
@@ -261,45 +246,13 @@ namespace DVLDPresentationLayer
             return isValid;
         }
 
-
-
-
-
-
-
-
         private void ClearForm()
         {
-            // txtPersonID.Clear();
-            // txtFullName.Clear();
             UserNameInput.Clear();
             PasswordInput.Clear();
             IsActiveCheckBox.Checked = false;
 
             currentUser = new clsUser(); // Reset to a new user
         }
-
-
-
-
-        private void LoginInfo_Click(object sender, EventArgs e)
-        {
-            // Code for login info click event, if needed
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            // Code for textBox2 text change event, if needed
-        }
-
-     
-
-
-        private void SaveButton_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-       
     }
 }

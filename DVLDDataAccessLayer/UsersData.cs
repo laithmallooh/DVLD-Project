@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DVLDDataAccessLayer
 {
     public class clsUsersData
@@ -255,7 +256,7 @@ namespace DVLDDataAccessLayer
         }
 
 
-
+    
         public bool ValidateUser(string username, string password)
         {
             string connectionString = clsDataAccessSettings.ConnectionString;

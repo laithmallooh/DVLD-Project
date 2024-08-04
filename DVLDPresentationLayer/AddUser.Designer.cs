@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panel1 = new Panel();
+            ctrlPersonCardWithFilter1 = new ctrlPersonCardWithFilter();
             tabControl1 = new TabControl();
             PersonalInfo = new TabPage();
             NextButton = new Button();
-            ctrlPersonCardWithFilter1 = new ctrlPersonCardWithFilter();
             LoginInfo = new TabPage();
             UserIDLabel = new Label();
             IsActiveCheckBox = new CheckBox();
@@ -45,10 +46,27 @@
             SaveButton = new Button();
             CloseButton = new Button();
             label4 = new Label();
+            dataGridView1 = new DataGridView();
             tabControl1.SuspendLayout();
             PersonalInfo.SuspendLayout();
             LoginInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(55, 205);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1325, 339);
+            panel1.TabIndex = 0;
+            // 
+            // ctrlPersonCardWithFilter1
+            // 
+            ctrlPersonCardWithFilter1.Location = new Point(3, 3);
+            ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            ctrlPersonCardWithFilter1.SelectedPersonId = null;
+            ctrlPersonCardWithFilter1.Size = new Size(1512, 559);
+            ctrlPersonCardWithFilter1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -62,6 +80,7 @@
             // 
             // PersonalInfo
             // 
+            PersonalInfo.Controls.Add(panel1);
             PersonalInfo.Controls.Add(NextButton);
             PersonalInfo.Controls.Add(ctrlPersonCardWithFilter1);
             PersonalInfo.Location = new Point(4, 34);
@@ -85,14 +104,6 @@
             NextButton.UseVisualStyleBackColor = true;
             NextButton.Click += NextButton_Click;
             // 
-            // ctrlPersonCardWithFilter1
-            // 
-            ctrlPersonCardWithFilter1.Location = new Point(3, 3);
-            ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            ctrlPersonCardWithFilter1.Size = new Size(1512, 559);
-            ctrlPersonCardWithFilter1.TabIndex = 0;
-           // ctrlPersonCardWithFilter1.Load += ctrlPersonCardWithFilter1_Load;
-            // 
             // LoginInfo
             // 
             LoginInfo.Controls.Add(UserIDLabel);
@@ -111,7 +122,6 @@
             LoginInfo.TabIndex = 1;
             LoginInfo.Text = "Login Info";
             LoginInfo.UseVisualStyleBackColor = true;
-          //  LoginInfo.Click += LoginInfo_Click;
             // 
             // UserIDLabel
             // 
@@ -153,7 +163,6 @@
             UserNameInput.Name = "UserNameInput";
             UserNameInput.Size = new Size(150, 31);
             UserNameInput.TabIndex = 7;
-           // UserNameInput.TextChanged += textBox2_TextChanged;
             // 
             // label3
             // 
@@ -206,7 +215,6 @@
             SaveButton.TabIndex = 2;
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = true;
-           // SaveButton.Click += SaveButton_Click_1;
             // 
             // CloseButton
             // 
@@ -231,6 +239,17 @@
             label4.TabIndex = 4;
             label4.Text = "Add New User";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(776, 426);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
             // AddUser
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -240,6 +259,7 @@
             Controls.Add(CloseButton);
             Controls.Add(SaveButton);
             Controls.Add(tabControl1);
+            Controls.Add(dataGridView1);
             Name = "AddUser";
             ShowIcon = false;
             Text = "Add New User";
@@ -247,8 +267,20 @@
             PersonalInfo.ResumeLayout(false);
             LoginInfo.ResumeLayout(false);
             LoginInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+
+
+
+            // In the constructor or InitializeComponent method
+            btnCheckState = new Button();
+            btnCheckState.Text = "Check State";
+            btnCheckState.Location = new Point(/* set appropriate location */);
+            btnCheckState.Click += BtnCheckState_Click;
+            this.Controls.Add(btnCheckState);
+
+
         }
 
         #endregion
@@ -270,6 +302,10 @@
         private TextBox UserNameInput;
         private Label label4;
         private Label UserIDLabel;
+        private Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private Button btnCheckState;
+
 
 
     }

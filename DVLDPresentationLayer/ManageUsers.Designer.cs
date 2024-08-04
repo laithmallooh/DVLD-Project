@@ -85,6 +85,8 @@
             usersDataGridView.RowHeadersWidth = 62;
             usersDataGridView.Size = new Size(1338, 692);
             usersDataGridView.TabIndex = 12;
+            usersDataGridView.UseWaitCursor = true;
+            usersDataGridView.CellContentClick += usersDataGridView_CellContentClick;
             // 
             // addUser
             // 
@@ -174,5 +176,10 @@
         private ColorDialog colorDialog1;
         private Label label2;
         private Label label5;
+
+
+    
+
+
     }
 }

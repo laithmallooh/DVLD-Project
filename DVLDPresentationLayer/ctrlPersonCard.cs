@@ -28,6 +28,7 @@ namespace DVLDPresentationLayer
             LoadPersonData();
         }
 
+
         private void SetDefaultValues()
         {
             // Set default or placeholder values
@@ -47,6 +48,8 @@ namespace DVLDPresentationLayer
         {
             if (person != null)
             {
+                MessageBox.Show($"Loading person data: {person.FirstName} {person.LastName}");
+
                 PersonIDLabel.Text = person.PersonID.ToString();
                 NameLabel.Text = $"{person.FirstName} {person.SecondName} {person.ThirdName} {person.LastName}";
                 NationalNoLabel.Text = person.NationalNo;
@@ -56,6 +59,7 @@ namespace DVLDPresentationLayer
                 PhoneLabel.Text = person.Phone;
                 EmailLabel.Text = person.Email;
                 CountryLabel.Text = ShowCountry(person);
+
                 // Load the image if ImagePath is valid
                 if (!string.IsNullOrEmpty(person.ImagePath))
                 {
@@ -73,7 +77,12 @@ namespace DVLDPresentationLayer
                     pictureBox1.Image = null; // or set a default image
                 }
             }
+            else
+            {
+                MessageBox.Show("No person data to load.");
+            }
         }
+
 
 
 

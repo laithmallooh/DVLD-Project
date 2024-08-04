@@ -317,50 +317,60 @@ namespace DVLDPresentationLayer
 
         private void EditMenuItem_Click(object sender, EventArgs e)
         {
+            // Check if a row is selected
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                // Retrieve selected person's ID and data
-                int selectedRowIndex = dataGridView1.SelectedRows[0].Index;
+                // Get the selected row
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                object firstColumnValue = selectedRow.Cells[0].Value;
 
-                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int personId))
+                // Retrieve UserID and PersonID values
+                object userIdValue = selectedRow.Cells["UserID"].Value; // Assuming the column name is "UserID"
+                object personIdValue = selectedRow.Cells["PersonID"].Value; // Assuming the column name is "PersonID"
+
+                // Validate and parse UserID and PersonID
+                if (userIdValue != null && personIdValue != null &&
+                    int.TryParse(userIdValue.ToString(), out int userId) &&
+                    int.TryParse(personIdValue.ToString(), out int personId))
                 {
-                    // Retrieve person's data from business layer
-                    clsPerson person = clsPerson.Find(personId);
-
-                    if (person != null)
+                    try
                     {
-                        // Set mode to Update
-                        person.Mode = clsPerson.enMode.Update;
+                        // Retrieve the clsUser instance
+                        clsUser user = clsUser.Find(userId);
 
-                        // Open AddPerson form with person data
-                        AddPerson addPersonForm = new AddPerson(person);
-                        addPersonForm.ShowDialog();
-
-                        // Handle image operations based on AddPerson form state
-                        if (addPersonForm.ImageRemoved)
+                        // Check if the user is found
+                        if (user != null)
                         {
-                            // Remove person's image from file system
-                            RemovePersonImage(person.ImagePath);
-                            person.ImagePath = ""; // Clear image path in person object
-                        }
-                        else if (addPersonForm.ImageUpdated)
-                        {
-                            // Save new selected image for person
-                            SavePersonImage(person, addPersonForm.SelectedImagePath);
-                        }
+                            // Create an instance of AddUser form and pass user and personId
+                            AddUser addUserForm = new AddUser(user, personId);
 
-                        // Refresh data after editing
-                        LoadData(); // Example: Refresh data after editing
+                            // Attach the FormClosed event handler
+                            addUserForm.FormClosed += (s, args) => LoadData(); // Refresh data or update UI after form is closed
+
+                            // Show the form
+                            addUserForm.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"User with ID {userId} not found.");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Person with ID " + personId + " not found.");
+                        MessageBox.Show($"Error retrieving user data: {ex.Message}");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Invalid UserID or PersonID.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No row is selected.");
             }
         }
+
+
 
 
         private void RemovePersonImage(string imagePath)

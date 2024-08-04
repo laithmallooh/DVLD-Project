@@ -9,50 +9,196 @@ namespace DVLDPresentationLayer
     {
         private ErrorProvider errorProvider1;
         private clsUser currentUser;
+        private ctrlPersonCardWithFilter personCardWithFilter;
 
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
+
+        private string selectedPersonId;
+
 
         public AddUser()
         {
             InitializeComponent();
             currentUser = new clsUser();
-
             errorProvider1 = new ErrorProvider();
-
-            // Set PasswordChar for password fields
             PasswordInput.PasswordChar = '*';
             ConfirmPasswordInput.PasswordChar = '*';
-
-            // Connect events
             UserNameInput.TextChanged += UserNameInput_TextChanged;
             PasswordInput.TextChanged += PasswordInput_TextChanged;
             ConfirmPasswordInput.TextChanged += ConfirmPasswordInput_TextChanged;
             SaveButton.Click += SaveButton_Click;
             NextButton.Click += NextButton_Click;
 
-            // Subscribe to the PersonSelectedChanged event
-            ctrlPersonCardWithFilter1.PersonSelectedChanged += ctrlPersonCardWithFilter1_PersonSelectedChanged;
+            // Initialize and set up DataGridView
+            dataGridView1 = new DataGridView();
+            dataGridView1.Dock = DockStyle.Fill; // Adjust as needed
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            this.Controls.Add(dataGridView1);
 
-            // Initialize button state
-            UpdateNextButtonState();
+
+
+            // Initialize ctrlPersonCardWithFilter
+            personCardWithFilter = new ctrlPersonCardWithFilter(panel1);
+            this.Controls.Add(personCardWithFilter);
+            personCardWithFilter.PersonSelectedChanged += PersonCardWithFilter_PersonSelectedChanged;
+
+            MessageBox.Show("AddUser constructor completed");
+
+
+
         }
 
-        // Constructor for editing an existing person
-        public AddUser(clsUser user) : this()
+
+        private void PersonCardWithFilter_PersonSelectedChanged(object sender, EventArgs e)
         {
+            MessageBox.Show($"PersonSelectedChanged event triggered. SelectedPersonId: {personCardWithFilter.SelectedPersonId}", "Event Triggered");
+            UpdateSaveButtonState();
+        }
+
+        private void UpdateSaveButtonState()
+        {
+            SaveButton.Enabled = personCardWithFilter.SelectedPersonId.HasValue;
+        }
+
+
+        private void AddUser_Load(object sender, EventArgs e)
+        {
+            if (Mode == enMode.Update)
+            {
+                LoadUserData();
+            }
+        }
+
+
+        // Constructor for editing an existing person
+        public AddUser(clsUser user, int personId) : this()
+        {
+            MessageBox.Show($"Initializing AddUser with PersonID: {personId}"); // Debug message
             if (user != null)
             {
                 label4.Text = "Edit User";
                 Mode = enMode.Update;
+                currentUser = user;
+                LoadUserData(personId);
 
-                this.currentUser = user;
-                LoadUserData();
+                // Ensure the correct PersonID is set
+                currentUser.PersonID = personId;
+                MessageBox.Show($"Set currentUser.PersonID to: {currentUser.PersonID}"); // Debug message
 
-                // Disable search controls
-                DisableSearchControls();
+                // Update the personCardWithFilter with the correct PersonID
+                personCardWithFilter.SelectedPersonId = personId;
+                MessageBox.Show($"Set personCardWithFilter.SelectedPersonId to: {personCardWithFilter.SelectedPersonId}"); // Debug message
+
+                ctrlPersonCardWithFilter1.DisableSearchControls();
+            }
+            else
+            {
+                MessageBox.Show("User object is null.");
             }
         }
+
+        private void SomeMethodToTestSelection()
+        {
+            // For testing purposes only
+            personCardWithFilter.SelectedPersonId = 1026; // or any valid ID
+            MessageBox.Show($"Manually set SelectedPersonId: {personCardWithFilter.SelectedPersonId}");
+        }
+
+
+        private void ctrlPersonCardWithFilter1_PersonSelectedChanged(object sender, EventArgs e)
+        {
+            if (personCardWithFilter.SelectedPersonId.HasValue)
+            {
+                MessageBox.Show($"Selected Person ID: {personCardWithFilter.SelectedPersonId.Value}"); // Debugging message
+                personCardWithFilter.DisplayPersonData(personCardWithFilter.SelectedPersonId.Value);
+            }
+            else
+            {
+                MessageBox.Show("No person selected.");
+            }
+        }
+
+
+        //private void ctrlPersonCardWithFilter1_PersonSelectedChanged(object sender, EventArgs e)
+        //{
+        //    UpdateNextButtonState();
+        //    MessageBox.Show("Person selection changed."); // Debugging message
+        //}
+
+
+
+
+        // Method to load existing person data into form fields
+        private void LoadUserData(int personId)
+        {
+            MessageBox.Show($"Loading user data for PersonID: {personId}");
+
+            clsPerson person = clsPerson.Find(personId);
+            if (person != null)
+            {
+                MessageBox.Show($"Person found: {person.FirstName} {person.LastName}");
+
+                // Load data into form controls
+                UserNameInput.Text = currentUser.UserName;
+                PasswordInput.Text = currentUser.Password;
+                ConfirmPasswordInput.Text = currentUser.Password;
+                IsActiveCheckBox.Checked = currentUser.IsActive;
+
+                // Update the personCardWithFilter
+                personCardWithFilter.UpdateSelectedPerson(personId);
+
+                // Optionally update the control showing person details
+                panel1.Controls.Clear();
+                ctrlPersonCard ctrlPersonCard = new ctrlPersonCard(person)
+                {
+                    Dock = DockStyle.Fill
+                };
+                panel1.Controls.Add(ctrlPersonCard);
+            }
+            else
+            {
+                MessageBox.Show("Person not found for given PersonID.");
+            }
+        }
+
+        private void LoadUserData()
+        {
+            if (currentUser.PersonID != null) // Change this line
+            {
+                int personId = currentUser.PersonID;
+                MessageBox.Show($"Loading user data for PersonID: {personId}");
+
+                clsPerson person = clsPerson.Find(personId); // Change this line
+                if (person != null)
+                {
+                    MessageBox.Show($"Person found: {person.FirstName} {person.LastName}");
+
+                    // Load data into form controls
+                    UserNameInput.Text = currentUser.UserName;
+                    PasswordInput.Text = currentUser.Password;
+                    IsActiveCheckBox.Checked = currentUser.IsActive;
+
+                    // Optionally update the control showing person details
+                    panel1.Controls.Clear();
+                    ctrlPersonCard ctrlPersonCard = new ctrlPersonCard(person)
+                    {
+                        Dock = DockStyle.Fill
+                    };
+                    panel1.Controls.Add(ctrlPersonCard);
+                }
+                else
+                {
+                    MessageBox.Show("Person not found.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid user data. PersonID is missing.");
+            }
+        }
+
+
 
         // Method to disable search controls
         private void DisableSearchControls()
@@ -61,22 +207,12 @@ namespace DVLDPresentationLayer
             NextButton.Enabled = false; // Disable next button if it navigates the tabs
         }
 
-        // Method to load existing person data into form fields
-        private void LoadUserData()
-        {
-            UserNameInput.Text = currentUser.UserName;
-            PasswordInput.Text = currentUser.Password;
-            IsActiveCheckBox.Checked = currentUser.IsActive;
-        }
+
+
 
         private void UpdateNextButtonState()
         {
-            bool personSelected = ctrlPersonCardWithFilter1.IsPersonSelected;
-            bool personFound = ctrlPersonCardWithFilter1.IsPersonFound;
-
-            MessageBox.Show($"UpdateNextButtonState: Person Selected = {personSelected}, Person Found = {personFound}");
-
-            NextButton.Enabled = personFound;
+            NextButton.Enabled = personCardWithFilter.SelectedPersonId.HasValue;
         }
 
         private void NextButton_Click(object sender, EventArgs e)
@@ -87,19 +223,9 @@ namespace DVLDPresentationLayer
             }
         }
 
-        private void ctrlPersonCardWithFilter1_PersonSelectedChanged(object sender, EventArgs e)
-        {
-            UpdateNextButtonState();
-            MessageBox.Show("Person selection changed."); // Debugging message
-        }
+    
 
-        private bool IsPersonSelected
-        {
-            get
-            {
-                return ctrlPersonCardWithFilter1.IsPersonSelected;
-            }
-        }
+      
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -162,11 +288,47 @@ namespace DVLDPresentationLayer
             }
         }
 
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                selectedPersonId = row.Cells["PersonID"].Value.ToString();
+                MessageBox.Show($"Selected Person ID: {selectedPersonId}"); // Debugging message
+
+                // Ensure ctrlPersonCardWithFilter is updated with the selected person ID if necessary
+                personCardWithFilter.SelectedPersonId = int.Parse(selectedPersonId); // Assuming SelectedPersonId is an int
+            }
+        }
+
+
+
+
+
+
+
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show($"Save button clicked. currentUser.PersonID: {currentUser.PersonID}, personCardWithFilter.SelectedPersonId: {personCardWithFilter.SelectedPersonId}");
+
             if (ValidateInput())
             {
-                SaveUser();
+                if (personCardWithFilter.SelectedPersonId.HasValue)
+                {
+                    // Ensure the PersonID matches between currentUser and personCardWithFilter
+                    if (currentUser.PersonID != personCardWithFilter.SelectedPersonId.Value)
+                    {
+                        MessageBox.Show($"PersonID mismatch detected. Updating currentUser.PersonID from {currentUser.PersonID} to {personCardWithFilter.SelectedPersonId.Value}");
+                        currentUser.PersonID = personCardWithFilter.SelectedPersonId.Value;
+                    }
+                    SaveUser();
+                }
+                else
+                {
+                    MessageBox.Show("No person selected. Please select a person before saving.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
@@ -174,43 +336,63 @@ namespace DVLDPresentationLayer
             }
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == PersonalInfo) // Adjust name as needed
+            {
+                // Re-trigger person selection if necessary
+                if (personCardWithFilter.SelectedPersonId.HasValue)
+                {
+                    personCardWithFilter.UpdateSelectedPerson(personCardWithFilter.SelectedPersonId.Value);
+                }
+            }
+        }
+
+
+        // Add this method to check the state
+        private void CheckControlState()
+        {
+            MessageBox.Show($"AddUser form state: personCardWithFilter.SelectedPersonId = {personCardWithFilter.SelectedPersonId}", "Form State Check");
+            personCardWithFilter.CheckState();
+        }
+
         private void SaveUser()
         {
-            MessageBox.Show("Saving user. Username: " + UserNameInput.Text);
 
-            int? selectedPersonId = ctrlPersonCardWithFilter1.SelectedPersonId;
+            MessageBox.Show($"Saving user. PersonID: {currentUser.PersonID}, Username: {UserNameInput.Text}");
 
-            if (selectedPersonId.HasValue)
+
+            // Final check to ensure PersonID is correct
+            if (personCardWithFilter.SelectedPersonId.HasValue && currentUser.PersonID != personCardWithFilter.SelectedPersonId.Value)
+            {
+                MessageBox.Show($"Final PersonID check: Updating from {currentUser.PersonID} to {personCardWithFilter.SelectedPersonId.Value}");
+                currentUser.PersonID = personCardWithFilter.SelectedPersonId.Value;
+            }
+
+
+            if (personCardWithFilter.SelectedPersonId.HasValue)
             {
                 currentUser.UserName = UserNameInput.Text;
                 currentUser.Password = PasswordInput.Text;
                 currentUser.IsActive = IsActiveCheckBox.Checked;
-                currentUser.PersonID = selectedPersonId.Value;
+                currentUser.PersonID = personCardWithFilter.SelectedPersonId.Value;
 
-                if (ValidateInput())
+                try
                 {
-                    try
+                    bool result = currentUser.Save();
+                    if (result)
                     {
-                        bool result = currentUser.Save();
-                        MessageBox.Show("Save result: " + result);
-
-                        if (result)
-                        {
-                            MessageBox.Show("User saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            UserIDLabel.Text = $"{currentUser.UserID}";
-
-                            // Optional: ClearForm(); // If you want to clear the form after saving
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to save the user. Please check your input and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        MessageBox.Show("User saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UserIDLabel.Text = $"{currentUser.UserID}";
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Failed to save the user. Please check your input and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -218,6 +400,13 @@ namespace DVLDPresentationLayer
                 MessageBox.Show("No person selected. Please select a person before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
+
+        private void CheckState()
+{
+    MessageBox.Show($"Current SelectedPersonId: {personCardWithFilter.SelectedPersonId}", "State Check");
+}
 
         private bool ValidateInput()
         {
@@ -254,5 +443,11 @@ namespace DVLDPresentationLayer
 
             currentUser = new clsUser(); // Reset to a new user
         }
+
+        private void BtnCheckState_Click(object sender, EventArgs e)
+        {
+            CheckControlState();
+        }
+
     }
 }

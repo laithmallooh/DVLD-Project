@@ -13,7 +13,9 @@ namespace DVLDPresentationLayer
         private Control FilterControl;
         private Label FilterByLabel;
         private DataTable peopleDataTable;
-
+        private Panel panel1; // Ensure this is properly initialized
+        private clsPerson selectedPerson;
+        private bool isPersonFound;
         public ManageUsers()
         {
             InitializeComponent();
@@ -54,6 +56,14 @@ namespace DVLDPresentationLayer
 
             // Initialize other components and event handlers
             InitializeContextMenu();
+
+
+
+            panel1 = new Panel(); // Initialize the panel if it’s not part of the designer code
+            this.Controls.Add(panel1); // Add it to the form's controls if necessary
+
+
+
         }
 
 
@@ -289,13 +299,42 @@ namespace DVLDPresentationLayer
 
         private void AddUserItem_Click(object sender, EventArgs e)
         {
-            using (AddUser AddUser = new AddUser())
+            int selectedPersonId = SelectedPersonID;
+            clsUser selectedUser = clsUser.Find(selectedPersonId); // Retrieve the user data
+
+            if (selectedUser != null)
             {
-                if (AddUser.ShowDialog() == DialogResult.OK)
-                {
-                    // Refresh data after closing AddPerson form
-                    LoadData(); // Assuming LoadData() is a method that reloads your people data
-                }
+                AddUser addUserForm = new AddUser(selectedUser, selectedPersonId);
+                addUserForm.ShowDialog(); // Use ShowDialog to wait for form closure
+            }
+            else
+            {
+                MessageBox.Show("No user found with the selected person ID.");
+            }
+        }
+
+
+        // In UserManagement.cs
+        private void OpenAddUserForm()
+        {
+            int selectedPersonId = SelectedPersonID;
+            clsUser selectedUser = clsUser.Find(selectedPersonId); // Assuming you can find the user by PersonID
+
+            AddUser addUserForm = new AddUser(selectedUser, selectedPersonId);
+            addUserForm.Show();
+        }
+
+        private int GetSelectedUserId()
+        {
+            if (usersDataGridView.SelectedRows.Count > 0)
+            {
+                // Ensure that the ID is in the expected column
+                int columnIndex = 0; // Update if the ID is in a different column
+                return Convert.ToInt32(usersDataGridView.SelectedRows[0].Cells[columnIndex].Value);
+            }
+            else
+            {
+                throw new InvalidOperationException("No user is selected.");
             }
         }
 
@@ -303,37 +342,80 @@ namespace DVLDPresentationLayer
         {
             if (usersDataGridView.SelectedRows.Count > 0)
             {
-                // Retrieve selected person's ID and data
-                int selectedRowIndex = usersDataGridView.SelectedRows[0].Index;
                 DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
-                object firstColumnValue = selectedRow.Cells[0].Value;
 
-                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int UserID))
+                // Use the correct column name here
+                string columnName = "PersonID"; // Replace with the actual column name
+                int personId = Convert.ToInt32(selectedRow.Cells[columnName].Value);
+                MessageBox.Show($"(EditMenuItem_Click )Selected PersonID: {personId}"); // Debug message
+
+                clsUser user = GetSelectedUser(); // Implement this method as needed
+                if (user != null)
                 {
-                    // Retrieve person's data from business layer
-                    clsUser User = clsUser.Find(UserID);
-
-                    if (User != null)
-                    {
-                        // Set mode to Update
-                        User.Mode = clsUser.enMode.Update;
-
-                        // Open AddPerson form with person data
-                        AddUser addUserForm = new AddUser(User);
-                        addUserForm.ShowDialog();
-
-                   
-
-                        // Refresh data after editing
-                        LoadData(); // Example: Refresh data after editing
-                    }
-                    else
-                    {
-                        MessageBox.Show("User with ID " + UserID + " not found.");
-                    }
+                    AddUser addUserForm = new AddUser(user, personId);
+                    addUserForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("User not found for the selected row.");
                 }
             }
+            else
+            {
+                MessageBox.Show("Please select a row to edit.");
+            }
+
         }
+
+
+        private clsUser GetSelectedUser()
+        {
+            if (usersDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
+
+                // Assuming there's a column named "UserID" or similar
+                int userId = Convert.ToInt32(selectedRow.Cells["UserID"].Value);
+
+                MessageBox.Show($"Retrieving user with UserID: {userId}"); // Debug message
+
+                // Retrieve the user using the UserID
+                clsUser user = clsUser.Find(userId); // Implement or call your data access method
+                return user;
+            }
+
+            return null;
+        }
+
+
+
+        private void OnPersonSelectedChanged()
+        {
+            // Implementation for when person selection changes
+        }
+
+
+
+
+
+
+        // In UserManagement.cs
+        public int SelectedPersonID
+        {
+            get
+            {
+                if (usersDataGridView.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
+                    if (selectedRow.Cells["PersonID"] != null && int.TryParse(selectedRow.Cells["PersonID"].Value.ToString(), out int personId))
+                    {
+                        return personId;
+                    }
+                }
+                return -1; // Return -1 or another value indicating no valid ID found
+            }
+        }
+
 
         private void DeleteMenuItem_Click(object sender, EventArgs e)
         {
@@ -399,6 +481,9 @@ namespace DVLDPresentationLayer
             }
         }
 
+
+
+
         private void LoadData()
         {
             try
@@ -448,5 +533,9 @@ namespace DVLDPresentationLayer
             LoadData();
         }
 
+        private void usersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

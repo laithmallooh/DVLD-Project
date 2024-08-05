@@ -33,6 +33,7 @@
             tabControl1 = new TabControl();
             PersonalInfo = new TabPage();
             NextButton = new Button();
+            dataGridView1 = new DataGridView();
             LoginInfo = new TabPage();
             UserIDLabel = new Label();
             IsActiveCheckBox = new CheckBox();
@@ -43,14 +44,13 @@
             label2 = new Label();
             label1 = new Label();
             NationalNo = new Label();
-            SaveButton = new Button();
-            CloseButton = new Button();
             label4 = new Label();
-            dataGridView1 = new DataGridView();
+            CloseButton = new Button();
+            SaveButton = new Button();
             tabControl1.SuspendLayout();
             PersonalInfo.SuspendLayout();
-            LoginInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            LoginInfo.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -83,6 +83,7 @@
             PersonalInfo.Controls.Add(panel1);
             PersonalInfo.Controls.Add(NextButton);
             PersonalInfo.Controls.Add(ctrlPersonCardWithFilter1);
+            PersonalInfo.Controls.Add(dataGridView1);
             PersonalInfo.Location = new Point(4, 34);
             PersonalInfo.Name = "PersonalInfo";
             PersonalInfo.Padding = new Padding(3);
@@ -103,6 +104,17 @@
             NextButton.Text = "Next";
             NextButton.UseVisualStyleBackColor = true;
             NextButton.Click += NextButton_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(22, 6);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(776, 426);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // LoginInfo
             // 
@@ -204,17 +216,15 @@
             NationalNo.TabIndex = 2;
             NationalNo.Text = "User ID :";
             // 
-            // SaveButton
+            // label4
             // 
-            SaveButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SaveButton.Image = Properties.Resources.diskette;
-            SaveButton.ImageAlign = ContentAlignment.MiddleRight;
-            SaveButton.Location = new Point(994, 753);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Size = new Size(152, 49);
-            SaveButton.TabIndex = 2;
-            SaveButton.Text = "Save";
-            SaveButton.UseVisualStyleBackColor = true;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(485, 35);
+            label4.Name = "label4";
+            label4.Size = new Size(294, 54);
+            label4.TabIndex = 4;
+            label4.Text = "Add New User";
             // 
             // CloseButton
             // 
@@ -229,26 +239,17 @@
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
             // 
-            // label4
+            // SaveButton
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(485, 35);
-            label4.Name = "label4";
-            label4.Size = new Size(294, 54);
-            label4.TabIndex = 4;
-            label4.Text = "Add New User";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(776, 426);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellClick += dataGridView1_CellClick;
+            SaveButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SaveButton.Image = Properties.Resources.diskette;
+            SaveButton.ImageAlign = ContentAlignment.MiddleRight;
+            SaveButton.Location = new Point(994, 753);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(152, 49);
+            SaveButton.TabIndex = 2;
+            SaveButton.Text = "Save";
+            SaveButton.UseVisualStyleBackColor = true;
             // 
             // AddUser
             // 
@@ -259,28 +260,16 @@
             Controls.Add(CloseButton);
             Controls.Add(SaveButton);
             Controls.Add(tabControl1);
-            Controls.Add(dataGridView1);
             Name = "AddUser";
             ShowIcon = false;
             Text = "Add New User";
             tabControl1.ResumeLayout(false);
             PersonalInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             LoginInfo.ResumeLayout(false);
             LoginInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
-
-
-
-            // In the constructor or InitializeComponent method
-            btnCheckState = new Button();
-            btnCheckState.Text = "Check State";
-            btnCheckState.Location = new Point(/* set appropriate location */);
-            btnCheckState.Click += BtnCheckState_Click;
-            this.Controls.Add(btnCheckState);
-
-
         }
 
         #endregion
@@ -290,8 +279,6 @@
         private TabPage LoginInfo;
         private Button NextButton;
         private ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
-        private Button SaveButton;
-        private Button CloseButton;
         private Label label3;
         private Label label2;
         private Label label1;
@@ -303,10 +290,8 @@
         private Label label4;
         private Label UserIDLabel;
         private Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private Button btnCheckState;
-
-
-
+        private DataGridView dataGridView1;
+        private Button CloseButton;
+        private Button SaveButton;
     }
 }

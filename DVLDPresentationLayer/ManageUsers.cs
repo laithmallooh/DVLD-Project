@@ -74,6 +74,7 @@ namespace DVLDPresentationLayer
             contextMenuStrip.Items.Add("Edit", null, EditMenuItem_Click);
             contextMenuStrip.Items.Add("Delete", null, DeleteMenuItem_Click);
             contextMenuStrip.Items.Add("Add User", null, AddUserItem_Click);
+            contextMenuStrip.Items.Add("Change Password", null, ChangePasswordItem_Click);
 
             usersDataGridView.ContextMenuStrip = contextMenuStrip;
             usersDataGridView.MouseDown += usersDataGridView_MouseDown;
@@ -314,6 +315,12 @@ namespace DVLDPresentationLayer
         }
 
 
+        private void ChangePasswordItem_Click(object sender, EventArgs e)
+        {
+        }
+
+
+
         // In UserManagement.cs
         private void OpenAddUserForm()
         {
@@ -364,6 +371,10 @@ namespace DVLDPresentationLayer
             {
                 MessageBox.Show("Please select a row to edit.");
             }
+
+
+            // Refresh data 
+            LoadData();
 
         }
 

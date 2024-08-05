@@ -44,7 +44,7 @@ namespace DVLDPresentationLayer
             pictureBox1.Image = null; // Or set a default image
         }
 
-        private void LoadPersonData()
+        public void LoadPersonData()
         {
             if (person != null)
             {
@@ -83,6 +83,49 @@ namespace DVLDPresentationLayer
             }
         }
 
+
+        public void LoadPersonData(clsPerson person)
+        {
+
+            if (person != null)
+            {
+                MessageBox.Show($"Loading person data: {person.FirstName} {person.LastName}");
+
+                PersonIDLabel.Text = person.PersonID.ToString();
+                NameLabel.Text = $"{person.FirstName} {person.SecondName} {person.ThirdName} {person.LastName}";
+                NationalNoLabel.Text = person.NationalNo;
+                DateOfBirthLabel.Text = person.DateOfBirth.ToShortDateString(); // Display date without time
+                AddressLabel.Text = person.Address;
+                GenderLabel.Text = ShowGender(person);
+                PhoneLabel.Text = person.Phone;
+                EmailLabel.Text = person.Email;
+                CountryLabel.Text = ShowCountry(person);
+
+                // Load the image if ImagePath is valid
+                if (!string.IsNullOrEmpty(person.ImagePath))
+                {
+                    try
+                    {
+                        pictureBox1.Image = Image.FromFile(person.ImagePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    pictureBox1.Image = null; // or set a default image
+                }
+            }
+            else
+            {
+                MessageBox.Show("No person data to load.");
+            }
+
+
+
+        }
 
 
 

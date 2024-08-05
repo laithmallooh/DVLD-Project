@@ -43,6 +43,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             PersonInformation.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPersons).BeginInit();
             SuspendLayout();
             // 
@@ -121,6 +122,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(dgvPersons);
             panel1.Location = new Point(16, 23);
             panel1.Name = "panel1";
             panel1.Size = new Size(1334, 346);
@@ -136,7 +138,7 @@
             // dgvPersons
             // 
             dgvPersons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPersons.Location = new Point(12, 12);
+            dgvPersons.Location = new Point(-178, 7);
             dgvPersons.Name = "dgvPersons";
             dgvPersons.RowHeadersWidth = 62;
             dgvPersons.Size = new Size(240, 150);
@@ -154,13 +156,13 @@
             Controls.Add(FindByComboBox);
             Controls.Add(Filter);
             Controls.Add(PersonInformation);
-            Controls.Add(dgvPersons);
             Name = "ctrlPersonCardWithFilter";
             Size = new Size(1435, 602);
             Load += ctrlPersonCardWithFilter_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             PersonInformation.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvPersons).EndInit();
             ResumeLayout(false);
             PerformLayout();

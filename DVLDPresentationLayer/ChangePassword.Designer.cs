@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             PersonInformation = new GroupBox();
-            ctrlPersonCard1 = new ctrlPersonCard();
+            ctrlPersonCard = new ctrlPersonCard();
             LoginInformation = new GroupBox();
-            ctrlUserCard1 = new ctrlUserCard();
+            ctrlUserCard = new ctrlUserCard();
             CurrentPasswordLabel = new Label();
             NewPasswordLabel = new Label();
             ConfirmPasswordLabel = new Label();
@@ -46,7 +46,7 @@
             // 
             // PersonInformation
             // 
-            PersonInformation.Controls.Add(ctrlPersonCard1);
+            PersonInformation.Controls.Add(ctrlPersonCard);
             PersonInformation.Location = new Point(23, 22);
             PersonInformation.Name = "PersonInformation";
             PersonInformation.Size = new Size(1397, 388);
@@ -54,16 +54,17 @@
             PersonInformation.TabStop = false;
             PersonInformation.Text = "Person Information";
             // 
-            // ctrlPersonCard1
+            // ctrlPersonCard
             // 
-            ctrlPersonCard1.Location = new Point(21, 44);
-            ctrlPersonCard1.Name = "ctrlPersonCard1";
-            ctrlPersonCard1.Size = new Size(1358, 323);
-            ctrlPersonCard1.TabIndex = 0;
+            ctrlPersonCard.Location = new Point(21, 44);
+            ctrlPersonCard.Name = "ctrlPersonCard";
+            ctrlPersonCard.Size = new Size(1358, 323);
+            ctrlPersonCard.TabIndex = 0;
+            ctrlPersonCard.Load += ctrlPersonCard_Load;
             // 
             // LoginInformation
             // 
-            LoginInformation.Controls.Add(ctrlUserCard1);
+            LoginInformation.Controls.Add(ctrlUserCard);
             LoginInformation.Location = new Point(33, 454);
             LoginInformation.Name = "LoginInformation";
             LoginInformation.Size = new Size(1387, 150);
@@ -71,12 +72,12 @@
             LoginInformation.TabStop = false;
             LoginInformation.Text = "Login Information";
             // 
-            // ctrlUserCard1
+            // ctrlUserCard
             // 
-            ctrlUserCard1.Location = new Point(220, 30);
-            ctrlUserCard1.Name = "ctrlUserCard1";
-            ctrlUserCard1.Size = new Size(877, 99);
-            ctrlUserCard1.TabIndex = 0;
+            ctrlUserCard.Location = new Point(220, 30);
+            ctrlUserCard.Name = "ctrlUserCard";
+            ctrlUserCard.Size = new Size(877, 99);
+            ctrlUserCard.TabIndex = 0;
             // 
             // CurrentPasswordLabel
             // 
@@ -153,6 +154,14 @@
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = true;
             SaveButton.Click += SaveButton_Click;
+
+            // Initialize and add ctrlUserCard
+            ctrlUserCard = new ctrlUserCard();
+            ctrlUserCard.Location = new Point(220, 30);
+            ctrlUserCard.Name = "ctrlUserCard";
+            ctrlUserCard.Size = new Size(877, 99);
+            LoginInformation.Controls.Add(ctrlUserCard);
+
             // 
             // ChangePassword
             // 
@@ -181,9 +190,9 @@
         #endregion
 
         private GroupBox PersonInformation;
-        private ctrlPersonCard ctrlPersonCard1;
+        private ctrlPersonCard ctrlPersonCard;
         private GroupBox LoginInformation;
-        private ctrlUserCard ctrlUserCard1;
+        private ctrlUserCard ctrlUserCard;
         private Label CurrentPasswordLabel;
         private Label NewPasswordLabel;
         private Label ConfirmPasswordLabel;

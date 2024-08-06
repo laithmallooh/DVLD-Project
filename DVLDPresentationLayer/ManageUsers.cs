@@ -317,7 +317,52 @@ namespace DVLDPresentationLayer
 
         private void ChangePasswordItem_Click(object sender, EventArgs e)
         {
+            if (usersDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
+
+                // Retrieve UserID and PersonID from the DataGridView
+                object userColumnValue = selectedRow.Cells[0].Value;
+                object personColumnValue = selectedRow.Cells[1].Value;
+
+                if (userColumnValue != null && personColumnValue != null &&
+                    int.TryParse(userColumnValue.ToString(), out int userId) &&
+                    int.TryParse(personColumnValue.ToString(), out int personId))
+                {
+                    try
+                    {
+                        // Retrieve the user's data
+                        clsPerson person = clsPerson.Find(personId);
+                        clsUser user = clsUser.Find(userId);
+
+                        if (person != null && user != null)
+                        {
+                            // Open ChangePassword form with the user's data
+                            ChangePassword changePasswordForm = new ChangePassword(person, user);
+                            changePasswordForm.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Person with ID {personId} or User with ID {userId} not found.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error retrieving user data: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid UserID or PersonID.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No row is selected.");
+            }
         }
+
+
 
 
 

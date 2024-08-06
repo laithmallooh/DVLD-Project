@@ -1,4 +1,6 @@
-﻿namespace DVLDPresentationLayer
+﻿using System;
+
+namespace DVLDPresentationLayer
 {
     partial class ctrlPersonCardWithFilter
     {

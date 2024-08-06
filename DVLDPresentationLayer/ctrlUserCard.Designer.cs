@@ -108,6 +108,7 @@
             Controls.Add(UserIDLabel);
             Name = "ctrlUserCard";
             Size = new Size(983, 118);
+            Load += ctrlUserCard_Load;
             ResumeLayout(false);
             PerformLayout();
         }

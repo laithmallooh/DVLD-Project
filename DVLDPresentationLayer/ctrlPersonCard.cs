@@ -14,7 +14,7 @@ namespace DVLDPresentationLayer
 {
     public partial class ctrlPersonCard : UserControl
     {
-        private clsPerson person; // Declare person at class level
+        private clsPerson _person; // Declare person at class level
 
         public ctrlPersonCard()
         {
@@ -22,10 +22,57 @@ namespace DVLDPresentationLayer
             SetDefaultValues();
         }
 
-        public ctrlPersonCard(clsPerson person) : this()
+        public ctrlPersonCard(clsPerson person)
         {
-            this.person = person;
-            LoadPersonData();
+            InitializeComponent();
+            Initialize(person);
+        }
+
+        public void Initialize(clsPerson person)
+        {
+            this._person = person;
+            LoadPersonData(); // Load the data
+        }
+        private void LoadPersonData()
+        {
+
+            // Debug: Check each field
+            MessageBox.Show($"Loading data for PersonID: {_person.PersonID} in LoadPersonData function");
+
+            if (_person != null)
+            {
+                // Assuming you have labels or textboxes to display the data
+                PersonIDLabel.Text = _person.PersonID.ToString();
+                NameLabel.Text = $"{_person.FirstName} {_person.SecondName} {_person.ThirdName} {_person.LastName}";
+                NationalNoLabel.Text = _person.NationalNo;
+                DateOfBirthLabel.Text = _person.DateOfBirth.ToShortDateString(); // Display date without time
+                AddressLabel.Text = _person.Address;
+                GenderLabel.Text = ShowGender(_person);
+                PhoneLabel.Text = _person.Phone;
+                EmailLabel.Text = _person.Email;
+                CountryLabel.Text = ShowCountry(_person);
+
+                // Load the image if ImagePath is valid
+                if (!string.IsNullOrEmpty(_person.ImagePath))
+                {
+                    try
+                    {
+                        pictureBox1.Image = Image.FromFile(_person.ImagePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    pictureBox1.Image = null; // or set a default image
+                }
+            }
+            else
+            {
+                MessageBox.Show("No person data to load.");
+            }
         }
 
 
@@ -44,90 +91,9 @@ namespace DVLDPresentationLayer
             pictureBox1.Image = null; // Or set a default image
         }
 
-        public void LoadPersonData()
-        {
-            if (person != null)
-            {
-                MessageBox.Show($"Loading person data: {person.FirstName} {person.LastName}");
-
-                PersonIDLabel.Text = person.PersonID.ToString();
-                NameLabel.Text = $"{person.FirstName} {person.SecondName} {person.ThirdName} {person.LastName}";
-                NationalNoLabel.Text = person.NationalNo;
-                DateOfBirthLabel.Text = person.DateOfBirth.ToShortDateString(); // Display date without time
-                AddressLabel.Text = person.Address;
-                GenderLabel.Text = ShowGender(person);
-                PhoneLabel.Text = person.Phone;
-                EmailLabel.Text = person.Email;
-                CountryLabel.Text = ShowCountry(person);
-
-                // Load the image if ImagePath is valid
-                if (!string.IsNullOrEmpty(person.ImagePath))
-                {
-                    try
-                    {
-                        pictureBox1.Image = Image.FromFile(person.ImagePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    pictureBox1.Image = null; // or set a default image
-                }
-            }
-            else
-            {
-                MessageBox.Show("No person data to load.");
-            }
-        }
 
 
-        public void LoadPersonData(clsPerson person)
-        {
-
-            if (person != null)
-            {
-                MessageBox.Show($"Loading person data: {person.FirstName} {person.LastName}");
-
-                PersonIDLabel.Text = person.PersonID.ToString();
-                NameLabel.Text = $"{person.FirstName} {person.SecondName} {person.ThirdName} {person.LastName}";
-                NationalNoLabel.Text = person.NationalNo;
-                DateOfBirthLabel.Text = person.DateOfBirth.ToShortDateString(); // Display date without time
-                AddressLabel.Text = person.Address;
-                GenderLabel.Text = ShowGender(person);
-                PhoneLabel.Text = person.Phone;
-                EmailLabel.Text = person.Email;
-                CountryLabel.Text = ShowCountry(person);
-
-                // Load the image if ImagePath is valid
-                if (!string.IsNullOrEmpty(person.ImagePath))
-                {
-                    try
-                    {
-                        pictureBox1.Image = Image.FromFile(person.ImagePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    pictureBox1.Image = null; // or set a default image
-                }
-            }
-            else
-            {
-                MessageBox.Show("No person data to load.");
-            }
-
-
-
-        }
-
-
+       
 
         private String ShowCountry(clsPerson person)
         {

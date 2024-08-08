@@ -21,6 +21,11 @@ namespace DVLDPresentationLayer
             InitializeComponent();
         }
 
+        public ctrlUserCard(clsUser user)
+        {
+            InitializeComponent();
+            Initialize(user);
+        }
 
 
         public void Initialize(clsUser user)

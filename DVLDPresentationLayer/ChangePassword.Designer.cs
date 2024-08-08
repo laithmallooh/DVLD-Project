@@ -74,9 +74,9 @@
             // 
             // ctrlUserCard
             // 
-            ctrlUserCard.Location = new Point(220, 30);
+            ctrlUserCard.Location = new Point(110, 30);
             ctrlUserCard.Name = "ctrlUserCard";
-            ctrlUserCard.Size = new Size(877, 99);
+            ctrlUserCard.Size = new Size(1287, 99);
             ctrlUserCard.TabIndex = 0;
             // 
             // CurrentPasswordLabel
@@ -154,14 +154,6 @@
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = true;
             SaveButton.Click += SaveButton_Click;
-
-            // Initialize and add ctrlUserCard
-            ctrlUserCard = new ctrlUserCard();
-            ctrlUserCard.Location = new Point(220, 30);
-            ctrlUserCard.Name = "ctrlUserCard";
-            ctrlUserCard.Size = new Size(877, 99);
-            LoginInformation.Controls.Add(ctrlUserCard);
-
             // 
             // ChangePassword
             // 

@@ -39,7 +39,8 @@ namespace DVLDPresentationLayer
             // InitializePersonCard();
             // Initialize the existing ctrlPersonCard control with person data
             LoadPersonData();
-            InitializeUserCard(); // Add this line
+            LoadUserData();
+          //  InitializeUserCard(); // Add this line
 
 
         }
@@ -100,9 +101,11 @@ namespace DVLDPresentationLayer
         {
             // Optionally re-load data here if needed
             LoadPersonData();
+            InitializeUserCard(); // Add this line
+
         }
 
-  
+
 
 
         private void InitializePersonCard()

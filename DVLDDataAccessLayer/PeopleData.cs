@@ -34,7 +34,6 @@ namespace DVLDDataAccessLayer
 
             return isFound;
         }
-
         public static DataTable GetAllPeople()
         {
             DataTable dt = new DataTable();
@@ -64,7 +63,6 @@ namespace DVLDDataAccessLayer
 
             return dt;
         }
-
         public static int AddNewPerson(string NationalNo, string FirstName, string SecondName,
              string ThirdName, string LastName, string Email, string Phone, string Address, DateTime DateOfBirth, int Gendor, string ImagePath, int NationalityCountryID)
         {
@@ -116,9 +114,6 @@ namespace DVLDDataAccessLayer
                 return -1;
             }
         }
-
-
-
         public static bool UpdatePerson(int PersonID, string NationalNo, string FirstName, string SecondName,
               string ThirdName, string LastName, string Email, string Phone, string Address, DateTime DateOfBirth, int Gendor, string ImagePath, int NationalityCountryID)
         {
@@ -174,11 +169,6 @@ namespace DVLDDataAccessLayer
 
             return (rowsAffected > 0);
         }
-
-
-
-
-
         public static bool DeletePerson(int PersonID)
         {
             int rowsAffected = 0;
@@ -257,9 +247,6 @@ namespace DVLDDataAccessLayer
 
             return (rowsAffected > 0);
         }
-
-
-
         public static bool GetPersonInfoByID(int PersonID, ref string NationalNo, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string Email, ref string Phone, ref string Address, ref DateTime DateOfBirth, ref int Gendor, ref string ImagePath, ref int NationalityCountryID)
         {
             bool isFound = false;
@@ -304,9 +291,6 @@ namespace DVLDDataAccessLayer
 
             return isFound;
         }
-
-
-
         public static bool GetPersonInfoByNationalNo(string NationalNo, ref int PersonID, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string Email, ref string Phone, ref string Address, ref DateTime DateOfBirth, ref int Gendor, ref string ImagePath, ref int NationalityCountryID)
         {
             bool isFound = false;
@@ -351,8 +335,6 @@ namespace DVLDDataAccessLayer
 
             return isFound;
         }
-
-
         public bool ValidateUser(string username, string password)
         {
             string connectionString = clsDataAccessSettings.ConnectionString;
@@ -381,11 +363,6 @@ namespace DVLDDataAccessLayer
                 }
             }
         }
-
-
-
-
-
 
     }
 }

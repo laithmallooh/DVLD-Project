@@ -40,8 +40,8 @@ namespace DVLDPresentationLayer
             Filter = new GroupBox();
             PersonInformation = new GroupBox();
             panel1 = new Panel();
-            ctrlPersonCard1 = new ctrlPersonCard();
             dgvPersons = new DataGridView();
+            ctrlPersonCard1 = new ctrlPersonCard();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             PersonInformation.SuspendLayout();
@@ -115,9 +115,9 @@ namespace DVLDPresentationLayer
             // 
             PersonInformation.Controls.Add(panel1);
             PersonInformation.Controls.Add(ctrlPersonCard1);
-            PersonInformation.Location = new Point(37, 175);
+            PersonInformation.Location = new Point(37, 162);
             PersonInformation.Name = "PersonInformation";
-            PersonInformation.Size = new Size(1356, 375);
+            PersonInformation.Size = new Size(1356, 372);
             PersonInformation.TabIndex = 44;
             PersonInformation.TabStop = false;
             PersonInformation.Text = "Person Information";
@@ -125,27 +125,27 @@ namespace DVLDPresentationLayer
             // panel1
             // 
             panel1.Controls.Add(dgvPersons);
-            panel1.Location = new Point(16, 23);
+            panel1.Location = new Point(12, 35);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1334, 346);
+            panel1.Size = new Size(1334, 331);
             panel1.TabIndex = 45;
-            // 
-            // ctrlPersonCard1
-            // 
-            ctrlPersonCard1.Location = new Point(0, 30);
-            ctrlPersonCard1.Name = "ctrlPersonCard1";
-            ctrlPersonCard1.Size = new Size(1074, 311);
-            ctrlPersonCard1.TabIndex = 0;
             // 
             // dgvPersons
             // 
             dgvPersons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPersons.Location = new Point(-178, 7);
+            dgvPersons.Location = new Point(236, 61);
             dgvPersons.Name = "dgvPersons";
             dgvPersons.RowHeadersWidth = 62;
             dgvPersons.Size = new Size(240, 150);
             dgvPersons.TabIndex = 0;
             dgvPersons.CellContentClick += dgvPersons_CellContentClick;
+            // 
+            // ctrlPersonCard1
+            // 
+            ctrlPersonCard1.Location = new Point(32, 53);
+            ctrlPersonCard1.Name = "ctrlPersonCard1";
+            ctrlPersonCard1.Size = new Size(1318, 293);
+            ctrlPersonCard1.TabIndex = 0;
             // 
             // ctrlPersonCardWithFilter
             // 
@@ -159,7 +159,7 @@ namespace DVLDPresentationLayer
             Controls.Add(Filter);
             Controls.Add(PersonInformation);
             Name = "ctrlPersonCardWithFilter";
-            Size = new Size(1435, 602);
+            Size = new Size(1435, 567);
             Load += ctrlPersonCardWithFilter_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

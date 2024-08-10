@@ -16,6 +16,8 @@ namespace DVLDPresentationLayer
         private Panel panel1; // Ensure this is properly initialized
         private clsPerson selectedPerson;
         private bool isPersonFound;
+        private ShowDetails detailsForm;
+
         public ManageUsers()
         {
             InitializeComponent();
@@ -253,65 +255,61 @@ namespace DVLDPresentationLayer
         {
             if (usersDataGridView.SelectedRows.Count > 0)
             {
-                int selectedRowIndex = usersDataGridView.SelectedRows[0].Index;
                 DataGridViewRow selectedRow = usersDataGridView.SelectedRows[0];
-                object firstColumnValue = selectedRow.Cells[0].Value;
+                object personIdValue = selectedRow.Cells[1].Value;
+                object userIdValue = selectedRow.Cells[0].Value;
 
-                if (firstColumnValue != null && int.TryParse(firstColumnValue.ToString(), out int personId))
+                if (personIdValue != null && int.TryParse(personIdValue.ToString(), out int personId) &&
+                    userIdValue != null && int.TryParse(userIdValue.ToString(), out int userId))
                 {
                     try
                     {
                         // Retrieve the person's data
                         clsPerson person = clsPerson.Find(personId);
+                        // Retrieve the user's data
+                        clsUser user = clsUser.Find(userId);
 
-                        if (person != null)
+                        if (person != null && user != null)
                         {
-                            // Create a new Form to host the ctrlPersonCard
-                            Form form = new Form
+                            if (detailsForm == null || detailsForm.IsDisposed)
                             {
-                                Text = "Person Details",
-                                Size = new Size(1400, 600) // Adjust the size as needed
-                            };
+                                // Create a new instance of ShowDetails form if not already open
+                                detailsForm = new ShowDetails();
+                                detailsForm.Show();
+                            }
 
-                            // Create an instance of ctrlPersonCard and set its Dock property
-                            ctrlPersonCard ctrlPersonCard = new ctrlPersonCard(person)
-                            {
-                                Dock = DockStyle.Fill
-                            };
-
-                            // Add the ctrlPersonCard to the Form
-                            form.Controls.Add(ctrlPersonCard);
-
-                            // Show the form
-                            form.Show();
+                            // Update the existing form with new data
+                            detailsForm.UpdateData(person, user);
+                            detailsForm.BringToFront();
                         }
                         else
                         {
-                            MessageBox.Show("Person with ID " + personId + " not found.");
+                            MessageBox.Show("Person or User not found.");
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error retrieving person data: " + ex.Message);
+                        MessageBox.Show("Error retrieving data: " + ex.Message);
                     }
                 }
-            }
-        }
-
-        private void AddUserItem_Click(object sender, EventArgs e)
-        {
-            int selectedPersonId = SelectedPersonID;
-            clsUser selectedUser = clsUser.Find(selectedPersonId); // Retrieve the user data
-
-            if (selectedUser != null)
-            {
-                AddUser addUserForm = new AddUser(selectedUser, selectedPersonId);
-                addUserForm.ShowDialog(); // Use ShowDialog to wait for form closure
+                else
+                {
+                    MessageBox.Show("Invalid selection. Please select a valid row.");
+                }
             }
             else
             {
-                MessageBox.Show("No user found with the selected person ID.");
+                MessageBox.Show("No row selected. Please select a row to view details.");
             }
+        }
+
+
+        private void AddUserItem_Click(object sender, EventArgs e)
+        {
+
+
+
+
         }
 
 
@@ -572,15 +570,18 @@ namespace DVLDPresentationLayer
             this.Close();
         }
 
-        private void addPerson_Click(object sender, EventArgs e)
+        private void addUser_Click(object sender, EventArgs e)
         {
-            AddUser addUser = new AddUser();
-
-            // Attach the FormClosed event handler
-            addUser.FormClosed += AddUser_FormClosed;
-
-            addUser.Show();
+            using (AddUser AddUser = new AddUser())
+            {
+                if (AddUser.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh data after closing AddPerson form
+                    LoadData(); // Assuming LoadData() is a method that reloads your people data
+                }
+            }
         }
+
 
         // Event handler for AddUser form closure
         private void AddUser_FormClosed(object sender, FormClosedEventArgs e)
@@ -590,6 +591,11 @@ namespace DVLDPresentationLayer
         }
 
         private void usersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ManageUsers_Load(object sender, EventArgs e)
         {
 
         }

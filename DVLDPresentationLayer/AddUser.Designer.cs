@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(55, 205);
+            panel1.Location = new Point(63, 200);
             panel1.Name = "panel1";
             panel1.Size = new Size(1325, 339);
             panel1.TabIndex = 0;
@@ -67,6 +67,7 @@
             ctrlPersonCardWithFilter1.SelectedPersonId = null;
             ctrlPersonCardWithFilter1.Size = new Size(1512, 559);
             ctrlPersonCardWithFilter1.TabIndex = 0;
+            ctrlPersonCardWithFilter1.Load += ctrlPersonCardWithFilter1_Load;
             // 
             // tabControl1
             // 
@@ -80,10 +81,10 @@
             // 
             // PersonalInfo
             // 
-            PersonalInfo.Controls.Add(panel1);
             PersonalInfo.Controls.Add(NextButton);
             PersonalInfo.Controls.Add(ctrlPersonCardWithFilter1);
             PersonalInfo.Controls.Add(dataGridView1);
+            PersonalInfo.Controls.Add(panel1);
             PersonalInfo.Location = new Point(4, 34);
             PersonalInfo.Name = "PersonalInfo";
             PersonalInfo.Padding = new Padding(3);

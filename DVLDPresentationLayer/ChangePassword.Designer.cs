@@ -141,6 +141,7 @@
             CloseButton.TabIndex = 9;
             CloseButton.Text = "Close";
             CloseButton.UseVisualStyleBackColor = true;
+            CloseButton.Click += CloseButton_Click;
             // 
             // SaveButton
             // 

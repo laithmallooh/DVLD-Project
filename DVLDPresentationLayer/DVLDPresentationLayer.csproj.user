@@ -32,5 +32,8 @@
     <Compile Update="ManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ShowDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

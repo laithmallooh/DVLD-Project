@@ -20,49 +20,62 @@ namespace DVLDPresentationLayer
             get => _selectedPersonId;
             set
             {
-                _selectedPersonId = value;
-                OnPersonSelectedChanged();
-                MessageBox.Show($"SelectedPersonId set to: {value}", "Property Set");
+                if (_selectedPersonId != value)
+                {
+                    _selectedPersonId = value;
+                    OnPersonSelectedChanged();
+                    MessageBox.Show($"SelectedPersonId updated to: {value}");
+                }
             }
         }
 
-
-
-
-
-
-        public void UpdateSelectedPerson(int personId)
-        {
-            MessageBox.Show($"UpdateSelectedPerson called with ID: {personId}", "Update");
-            SelectedPersonId = personId;
-            DisplayPersonData(personId);
-        }
-
-        private void OnPersonSelectedChanged()
-        {
-            MessageBox.Show($"OnPersonSelectedChanged called. Current SelectedPersonId: {SelectedPersonId}", "Event");
-            PersonSelectedChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-
-        // Add this method to check the state
         public void CheckState()
         {
             MessageBox.Show($"Current state: SelectedPersonId = {SelectedPersonId}", "State Check");
         }
 
+
+        protected virtual void OnPersonSelectedChanged()
+        {
+            PersonSelectedChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        // Method to update person details in UI
+        private void UpdatePersonDetails()
+        {
+            if (_selectedPersonId.HasValue)
+            {
+                clsPerson person = clsPerson.Find(_selectedPersonId.Value);
+                if (person != null)
+                {
+                    // Update UI with person details
+                    MessageBox.Show($"Displaying details for: {person.FirstName} {person.LastName}");
+                    // Implement UI update logic here
+                }
+                else
+                {
+                    MessageBox.Show("Person not found.");
+                }
+            }
+        }
+
+
+
         // Reference to panel1 where person details will be shown
         public Panel personDetailsPanel;
 
-
         // Default constructor
-        public ctrlPersonCardWithFilter(Panel panel) // Only keep this constructor
+        public ctrlPersonCardWithFilter(Panel panel)
         {
             InitializeComponent();
-            this.personDetailsPanel = panel;
+            personDetailsPanel = panel; // Assign the passed panel
             InitializeDefaultPersonCard();
             dgvPersons.Visible = false;
+            dgvPersons.SelectionChanged += dgvPersons_SelectionChanged;
+
         }
+
 
         // Default constructor (optional, if needed elsewhere)
         public ctrlPersonCardWithFilter()
@@ -72,9 +85,47 @@ namespace DVLDPresentationLayer
 
         }
 
+        private void OnPersonSelected(int personId)
+        {
+            SelectedPersonId = personId;
+            DisplayPersonData(personId);
+            MessageBox.Show($"Person selected: {SelectedPersonId}", "Debug");
+            // Other logic related to person selection
+        }
+
+
+
+        public void SelectPerson(int personId)
+        {
+            SelectedPersonId = personId;
+            PersonSelectedChanged?.Invoke(this, EventArgs.Empty);
+            DisplayPersonData(personId);
+            MessageBox.Show($"Person selected with ID: {SelectedPersonId}");
+        }
+
+
+        public void UpdateSelectedPerson(int personId)
+        {
+            MessageBox.Show($"UpdateSelectedPerson called with ID: {personId}", "Update");
+            SelectedPersonId = personId;
+            DisplayPersonData(personId);
+            OnPersonSelectedChanged(); // This will notify the parent form
+        }
+
+   
+
+
+
         // Method to display person data
         public void DisplayPersonData(int personId)
         {
+            // Debugging check
+            if (personDetailsPanel == null)
+            {
+                MessageBox.Show("personDetailsPanel is not initialized.");
+                return;
+            }
+
             clsPerson person = clsPerson.Find(personId);
             if (person != null)
             {
@@ -91,24 +142,10 @@ namespace DVLDPresentationLayer
             }
         }
 
-        private void OnPersonSelected(int personId)
-        {
-            SelectedPersonId = personId;
-            DisplayPersonData(personId);
-            // Other logic related to person selection
-        }
+        
 
-        // This method should be called when a person is found or not found
-    
 
-        // In ctrlPersonCardWithFilter
-        public void SelectPerson(int personId)
-        {
-            // Assuming you have a method to select a person
-            SelectedPersonId = personId;
-            PersonSelectedChanged?.Invoke(this, EventArgs.Empty);
-            MessageBox.Show($"Person selected with ID: {SelectedPersonId}");
-        }
+
 
 
 
@@ -156,6 +193,7 @@ namespace DVLDPresentationLayer
 
                     selectedPerson = person;
                     isPersonFound = true;
+                    SomePersonSelectionMethod(person.PersonID);
                     OnPersonSelectedChanged(); // Trigger event
                 }
                 else
@@ -175,14 +213,23 @@ namespace DVLDPresentationLayer
             }
         }
 
+        private void SomePersonSelectionMethod(int personId)
+        {
+            SharedData.SelectedPersonId = personId;
+            // Trigger any necessary events or updates
+        }
+
+
         private void dgvPersons_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvPersons.SelectedRows.Count > 0)
             {
                 int personId = (int)dgvPersons.SelectedRows[0].Cells["PersonID"].Value;
+                SelectedPersonId = personId;
                 UpdateSelectedPerson(personId);
             }
         }
+
 
 
         private void InitializeDefaultPersonCard()
@@ -208,8 +255,11 @@ namespace DVLDPresentationLayer
             if (person != null)
             {
                 MessageBox.Show($"Person found with ID: {person.PersonID}", "Search");
+                SelectedPersonId = person.PersonID;
+
                 UpdateSelectedPerson(person.PersonID);
             }
+
 
 
 
@@ -238,6 +288,7 @@ namespace DVLDPresentationLayer
 
                             selectedPerson = person; // Set the selected person
                             isPersonFound = true;
+                            UpdateSelectedPerson(person.PersonID);
                             OnPersonSelectedChanged(); // Trigger event
                             MessageBox.Show("Person found. Event triggered."); // Debug
                         }
@@ -290,7 +341,7 @@ namespace DVLDPresentationLayer
         }
 
         private void textInput_TextChanged(object sender, EventArgs e)
-        {
+       {
 
         }
 

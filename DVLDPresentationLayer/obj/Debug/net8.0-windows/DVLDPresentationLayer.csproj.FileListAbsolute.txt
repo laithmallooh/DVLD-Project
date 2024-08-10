@@ -26,6 +26,7 @@ E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-win
 E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.ManagePeople.resources
 E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.ManageUsers.resources
 E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.Properties.Resources.resources
+E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.ShowDetails.resources
 E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.csproj.GenerateResource.cache
 E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.GeneratedMSBuildEditorConfig.editorconfig
 E:\laith\Coding\Projects\DVLD-Project\DVLDPresentationLayer\obj\Debug\net8.0-windows\DVLDPresentationLayer.AssemblyInfoInputs.cache

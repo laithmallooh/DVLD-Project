@@ -11,8 +11,6 @@ namespace DVLDDataAccessLayer
 {
     public class clsUsersData
     {
-
-
         public static bool NationalNumberExists(string nationalNumber)
         {
             bool isFound = false;
@@ -40,7 +38,6 @@ namespace DVLDDataAccessLayer
 
             return isFound;
         }
-
         public static DataTable GetAllUsers()
         {
             DataTable dt = new DataTable();
@@ -69,7 +66,6 @@ namespace DVLDDataAccessLayer
 
             return dt;
         }
-
         public static int AddNewUser(int PersonID, string UserName, string Password, bool IsActive)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -115,16 +111,12 @@ namespace DVLDDataAccessLayer
                 MessageBox.Show("Connection closed.");
             }
         }
-
-
-
-        public static bool UpdateUser(int UserID, int PersonID, string FullName, string UserName, string Password, bool IsActive)
+        public static bool UpdateUser(int UserID, string FullName, string UserName, string Password, bool IsActive)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE Users  
                      SET 
-                         PersonID = @PersonID,
                          UserName = @UserName,
                          Password = @Password,
                          IsActive = @IsActive
@@ -132,7 +124,6 @@ namespace DVLDDataAccessLayer
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@IsActive", IsActive);
@@ -157,12 +148,40 @@ namespace DVLDDataAccessLayer
 
             return (rowsAffected > 0);
         }
+        public static bool UpdatePassword(int UserID, string Password)
+        {
+            int rowsAffected = 0;
+            string connectionString = clsDataAccessSettings.ConnectionString;
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE Users  
+                         SET Password = @Password
+                         WHERE UserID = @UserID;";
 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", UserID);
+                    command.Parameters.AddWithValue("@Password", Password);
 
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
 
+                        // Log for debugging
+                        Console.WriteLine($"Rows affected: {rowsAffected}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error in UpdatePassword: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
 
-
+            return (rowsAffected > 0);
+        }
         public static bool DeleteUser(int userID)
         {
             int rowsAffected = 0;
@@ -205,10 +224,6 @@ namespace DVLDDataAccessLayer
 
             return rowsAffected > 0;
         }
-
-
-
-
         public static bool GetUserInfoByID(int UserID, ref string FullName, ref string UserName, ref string Password, ref bool IsActive)
         {
             bool isFound = false;
@@ -254,9 +269,6 @@ namespace DVLDDataAccessLayer
 
             return isFound;
         }
-
-
-    
         public bool ValidateUser(string username, string password)
         {
             string connectionString = clsDataAccessSettings.ConnectionString;
@@ -285,11 +297,6 @@ namespace DVLDDataAccessLayer
                 }
             }
         }
-
-
-
-
-
 
     }
 }

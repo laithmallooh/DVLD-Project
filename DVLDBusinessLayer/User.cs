@@ -10,7 +10,6 @@ namespace DVLDBusinessLayer
 {
     public class clsUser
     {
-
         public enum enMode { AddNew = 0, Update = 1 };
         public int UserID { get; set; }
         public int PersonID { get; set; }
@@ -19,8 +18,7 @@ namespace DVLDBusinessLayer
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public enMode Mode { get; set; }
-
-
+        private clsPeopleData dataAccess = new clsPeopleData();
         public clsUser()
         {
             this.UserID = -1;
@@ -42,14 +40,17 @@ namespace DVLDBusinessLayer
             this.IsActive = IsActive;
             this.Mode = enMode.Update;
         }
-
-
         private bool _UpdateUser()
         {
             // Call the data access layer to update the person in the database
-            return clsUsersData.UpdateUser(this.UserID, this.PersonID, this.FullName, this.UserName, this.Password, this.IsActive );
+            return clsUsersData.UpdateUser(this.UserID, this.FullName, this.UserName, this.Password, this.IsActive );
         }
-
+        public bool _UpdatePassword()
+        {
+            // Ensure this.Password is set correctly
+            MessageBox.Show($"Attempting to update password for UserID: {this.UserID}");
+            return clsUsersData.UpdatePassword(this.UserID, this.Password);
+        }
         private bool _AddNewUser()
         {
             // Call the data access layer to add a new person to the database
@@ -57,20 +58,15 @@ namespace DVLDBusinessLayer
 
             return (this.UserID != -1); // Return true if person was successfully added
         }
-
-
         public static bool DeleteUser(int UserID)
         {
             MessageBox.Show(" clsUser.DeleteUser(UserId); business layer ");
             return clsUsersData.DeleteUser(UserID);
         }
-
         public static bool NationalNumberExists(string nationalNumber)
         {
             return clsPeopleData.NationalNumberExists(nationalNumber);
         }
-
-
         public static clsUser Find(int UserID)
         {
             int PersonID = -1;
@@ -90,8 +86,6 @@ namespace DVLDBusinessLayer
                 return null;
             }
         }
-
-
         public bool Save()
         {
             MessageBox.Show("Save method called. Mode: " + Mode);
@@ -110,50 +104,24 @@ namespace DVLDBusinessLayer
             }
         }
 
-
-
         private int GetCountryID(string countryName)
         {
             // Dummy implementation for now
             // Replace with actual logic to get country ID
             return 1;
         }
-
-
-
         public static DataTable GetAllPeople()
         {
             return clsPeopleData.GetAllPeople();
         }
-
-
-        private clsPeopleData dataAccess = new clsPeopleData();
-
         public bool ValidateUser(string username, string password)
         {
             return dataAccess.ValidateUser(username, password);
         }
-
-
-
-
-
         public static DataTable GetAllUsers()
         {
             return clsUsersData.GetAllUsers();
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

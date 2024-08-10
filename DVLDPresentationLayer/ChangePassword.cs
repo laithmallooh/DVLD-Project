@@ -13,37 +13,117 @@ namespace DVLDPresentationLayer
 {
 
 
- 
+
 
     public partial class ChangePassword : Form
     {
 
         private clsPerson _person;
-        private ctrlPersonCard personCard; // Declare at the class level
-
         private clsUser _user;
-        private ctrlUserCard userCard; // Add this line
+        private ctrlPersonCard personCard;
+        private ctrlUserCard userCard;
+        private ErrorProvider errorProvider;
+        private System.Windows.Forms.Timer typingTimer; // Use full namespace for Timer
+        private const int TypingDelay = 500; // Delay in milliseconds
 
 
-        public ChangePassword(clsPerson person , clsUser user)
+        public ChangePassword(clsPerson person, clsUser user)
         {
             InitializeComponent();
             this._person = person;
+            this._user = user;
 
-            this._user = user; // Store the user object
+            // Initialize the ErrorProvider for displaying errors
+            errorProvider = new ErrorProvider();
 
-            // Debugging messages
-            MessageBox.Show($"PersonID: {person.PersonID}, Name: {person.FirstName} in ChangePassword constructor");
-            MessageBox.Show($"UserID: {user.UserID}, Username: {user.UserName} in ChangePassword constructor");
+            // Initialize the Timer
+            typingTimer = new System.Windows.Forms.Timer(); // Use full namespace for Timer
+            typingTimer.Interval = TypingDelay;
+            typingTimer.Tick += TypingTimer_Tick;
 
-            // InitializePersonCard();
-            // Initialize the existing ctrlPersonCard control with person data
+            // Attach the TextChanged event handler to CurrentPasswordInput
+            CurrentPasswordInput.TextChanged += CurrentPasswordInput_TextChanged;
+
+            // Attach event handlers for NewPasswordInput and ConfirmPasswordInput
+            NewPasswordInput.TextChanged += NewPasswordInput_TextChanged;
+            ConfirmPasswordInput.TextChanged += ConfirmPasswordInput_TextChanged;
+
+
+            // Initialize controls with data
             LoadPersonData();
             LoadUserData();
-          //  InitializeUserCard(); // Add this line
-
-
         }
+
+        private void NewPasswordInput_TextChanged(object sender, EventArgs e)
+        {
+            // Check if the new password matches the confirm password
+            ValidateNewPassword();
+        }
+
+        private void ConfirmPasswordInput_TextChanged(object sender, EventArgs e)
+        {
+            // Check if the confirm password matches the new password
+            ValidateNewPassword();
+        }
+
+
+        private void ValidateNewPassword()
+        {
+            if (NewPasswordInput.Text != ConfirmPasswordInput.Text)
+            {
+                errorProvider.SetError(ConfirmPasswordInput, "Passwords do not match.");
+            }
+            else
+            {
+                errorProvider.SetError(ConfirmPasswordInput, "");
+            }
+        }
+
+
+        private void ValidateCurrentPassword()
+        {
+            // Retrieve the stored password for the user
+            string storedPassword = FindPassword(_user);
+
+            // Check if the entered password matches the stored password
+            if (storedPassword != null && CurrentPasswordInput.Text != storedPassword)
+            {
+                // Display an error message next to the CurrentPasswordInput
+                errorProvider.SetError(CurrentPasswordInput, "The current password is incorrect.");
+            }
+            else
+            {
+                // Clear the error if the password matches
+                errorProvider.SetError(CurrentPasswordInput, "");
+            }
+        }
+
+
+        private void CurrentPasswordInput_TextChanged(object sender, EventArgs e)
+        {
+            // Restart the timer whenever the text changes
+            typingTimer.Stop();
+            typingTimer.Start();
+        }
+
+        private void TypingTimer_Tick(object sender, EventArgs e)
+        {
+            // Stop the timer and validate the password when the delay period elapses
+            typingTimer.Stop();
+            ValidateCurrentPassword();
+        }
+
+
+
+        public string FindPassword(clsUser user)
+        {
+            clsUser selectedUser = clsUser.Find(user.UserID);
+
+            return selectedUser?.Password;
+        }
+
+
+
 
 
         private void LoadPersonData()
@@ -86,7 +166,7 @@ namespace DVLDPresentationLayer
                 ctrlUserCard.LoadUserData();
                 MessageBox.Show($"After LoadUserData: UserIDOutput.Text = ");
 
-                      
+
 
             }
             else
@@ -108,6 +188,7 @@ namespace DVLDPresentationLayer
 
 
 
+
         private void InitializePersonCard()
         {
             personCard = new ctrlPersonCard(_person)
@@ -124,16 +205,63 @@ namespace DVLDPresentationLayer
 
 
 
-       
+
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            // Validate the password fields
+            if (ValidatePasswordFields())
+            {
+                // Log for debugging: Show userID and new password
+                Console.WriteLine($"Updating password for UserID: {_user.UserID}, New Password: {NewPasswordInput.Text}");
 
+                // Update the password if there are no validation errors
+                _user.Password = NewPasswordInput.Text; // Ensure new password is assigned
+                if (_user._UpdatePassword())
+                {
+                    MessageBox.Show("Password updated successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update the password. Please try again.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please fix the errors in the password fields.");
+            }
         }
+
+        private bool ValidatePasswordFields()
+        {
+            bool isValid = true;
+
+            // Validate current password
+            ValidateCurrentPassword();
+            if (errorProvider.GetError(CurrentPasswordInput) != "")
+            {
+                isValid = false;
+            }
+
+            // Validate new password
+            ValidateNewPassword();
+            if (errorProvider.GetError(ConfirmPasswordInput) != "")
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
 
         private void ctrlPersonCard_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

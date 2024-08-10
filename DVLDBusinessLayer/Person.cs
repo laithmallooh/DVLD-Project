@@ -9,7 +9,6 @@ namespace DVLDBusinessLayer
     public class clsPerson
     {
         public enum enMode { AddNew = 0, Update = 1 };
-
         public int PersonID { get; set; }
         public string NationalNo { get; set; }
         public string FirstName { get; set; }
@@ -24,9 +23,7 @@ namespace DVLDBusinessLayer
         public int NationalityCountryID { get; set; }
         public string ImagePath { get; set; }
         public enMode Mode { get; set; }
-
-
-
+        private clsPeopleData dataAccess = new clsPeopleData();
 
         public clsPerson()
         {
@@ -45,7 +42,6 @@ namespace DVLDBusinessLayer
             this.ImagePath = "";
             this.Mode = enMode.AddNew;
         }
-
         private clsPerson(int personID, string nationalNo, string firstName, string secondName,
             string thirdName, string lastName, string email, string phone, string address, DateTime dateOfBirth, int gendor, string imagePath, int nationalityCountryID)
         {
@@ -64,14 +60,12 @@ namespace DVLDBusinessLayer
             this.ImagePath = imagePath;
             this.Mode = enMode.Update;
         }
-
         private bool _UpdatePerson()
         {
             // Call the data access layer to update the person in the database
             return clsPeopleData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.Email, this.Phone,
                                     this.Address, this.DateOfBirth, this.Gendor, this.ImagePath, this.NationalityCountryID);
         }
-
         private bool _AddNewPerson()
         {
             // Call the data access layer to add a new person to the database
@@ -80,20 +74,15 @@ namespace DVLDBusinessLayer
 
             return (this.PersonID != -1); // Return true if person was successfully added
         }
-
-
         public static bool DeletePerson(int PersonID)
         {
             MessageBox.Show(" clsPerson.DeletePerson(personId); business layer ");
             return clsPeopleData.DeletePerson(PersonID);
         }
-
         public static bool NationalNumberExists(string nationalNumber)
         {
             return clsPeopleData.NationalNumberExists(nationalNumber);
-        }
-
-            
+        }  
         public static clsPerson Find(int PersonID)
         {
             string NationalNo = "", FirstName = "", SecondName = "", ThirdName = "", LastName = "", Email = "", Phone = "", Address = "", ImagePath = "";
@@ -114,8 +103,6 @@ namespace DVLDBusinessLayer
                 return null;
             }
         }
-
-
         public static clsPerson FindByNationalNo(string NationalNo)
         {
             int PersonID = -1;
@@ -137,9 +124,6 @@ namespace DVLDBusinessLayer
                 return null;
             }
         }
-
-
-
         public bool Save()
         {
 
@@ -161,34 +145,20 @@ namespace DVLDBusinessLayer
             }
 
         }
-
-
-
-            private int GetCountryID(string countryName)
+        private int GetCountryID(string countryName)
         {
             // Dummy implementation for now
             // Replace with actual logic to get country ID
             return 1;
         }
-    
-
- 
         public static DataTable GetAllPeople()
         {
             return clsPeopleData.GetAllPeople();
         }
-
-
-        private clsPeopleData dataAccess = new clsPeopleData();
-
         public bool ValidateUser(string username, string password)
         {
             return dataAccess.ValidateUser(username, password);
         }
-
-
-
-         
 
     }
 }

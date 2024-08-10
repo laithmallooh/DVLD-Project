@@ -96,7 +96,7 @@
             addUser.Size = new Size(56, 65);
             addUser.TabIndex = 11;
             addUser.UseVisualStyleBackColor = true;
-            addUser.Click += addPerson_Click;
+            addUser.Click += addUser_Click;
             // 
             // label1
             // 
@@ -158,6 +158,7 @@
             Controls.Add(pictureBox1);
             Name = "ManageUsers";
             Text = "Manage Users";
+            Load += ManageUsers_Load;
             ((System.ComponentModel.ISupportInitialize)usersDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

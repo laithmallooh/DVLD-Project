@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace DVLDPresentationLayer
 {
-    public partial class ManageUsers : Form
+    public partial class frmManageUsers : Form
     {
         private ContextMenuStrip contextMenuStrip;
         private ComboBox FindByfilter;
@@ -16,9 +16,9 @@ namespace DVLDPresentationLayer
         private Panel panel1; // Ensure this is properly initialized
         private clsPerson selectedPerson;
         private bool isPersonFound;
-        private ShowDetails detailsForm;
+        private frmShowDetails detailsForm;
 
-        public ManageUsers()
+        public frmManageUsers()
         {
             InitializeComponent();
             InitializeFilterComponents();
@@ -274,7 +274,7 @@ namespace DVLDPresentationLayer
                             if (detailsForm == null || detailsForm.IsDisposed)
                             {
                                 // Create a new instance of ShowDetails form if not already open
-                                detailsForm = new ShowDetails();
+                                detailsForm = new frmShowDetails();
                                 detailsForm.Show();
                             }
 
@@ -370,7 +370,7 @@ namespace DVLDPresentationLayer
             int selectedPersonId = SelectedPersonID;
             clsUser selectedUser = clsUser.Find(selectedPersonId); // Assuming you can find the user by PersonID
 
-            AddUser addUserForm = new AddUser(selectedUser, selectedPersonId);
+            frmAddUser addUserForm = new frmAddUser(selectedUser, selectedPersonId);
             addUserForm.Show();
         }
 
@@ -402,7 +402,7 @@ namespace DVLDPresentationLayer
                 clsUser user = GetSelectedUser(); // Implement this method as needed
                 if (user != null)
                 {
-                    AddUser addUserForm = new AddUser(user, personId);
+                    frmAddUser addUserForm = new frmAddUser(user, personId);
                     addUserForm.ShowDialog();
                 }
                 else
@@ -572,7 +572,7 @@ namespace DVLDPresentationLayer
 
         private void addUser_Click(object sender, EventArgs e)
         {
-            using (AddUser AddUser = new AddUser())
+            using (frmAddUser AddUser = new frmAddUser())
             {
                 if (AddUser.ShowDialog() == DialogResult.OK)
                 {

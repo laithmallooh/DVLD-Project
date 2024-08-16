@@ -13,9 +13,9 @@ using DVLDPresentationLayer.Properties; // Ensure this is included
 
 namespace DVLDPresentationLayer
 {
-    public partial class LoginScreen : Form
+    public partial class frmLoginScreen : Form
     {
-        public LoginScreen()
+        public frmLoginScreen()
         {
             InitializeComponent();
             LoadCredentials();

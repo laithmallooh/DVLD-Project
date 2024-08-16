@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace DVLDPresentationLayer
 {
-    public partial class ShowDetails : Form
+    public partial class frmShowDetails : Form
     {
         private clsPerson _person;
         private clsUser _user;
 
-        public ShowDetails()
+        public frmShowDetails()
         {
             InitializeComponent();
         }

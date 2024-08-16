@@ -1,6 +1,6 @@
 ﻿namespace DVLDPresentationLayer
 {
-    partial class LoginScreen
+    partial class frmLoginScreen
     {
         /// <summary>
         /// Required designer variable.

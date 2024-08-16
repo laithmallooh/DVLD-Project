@@ -215,7 +215,6 @@ namespace DVLDPresentationLayer
 
         private void SomePersonSelectionMethod(int personId)
         {
-            SharedData.SelectedPersonId = personId;
             // Trigger any necessary events or updates
         }
 

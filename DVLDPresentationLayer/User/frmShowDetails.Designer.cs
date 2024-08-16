@@ -1,6 +1,6 @@
 ﻿namespace DVLDPresentationLayer
 {
-    partial class ShowDetails
+    partial class frmShowDetails
     {
         /// <summary>
         /// Required designer variable.

@@ -1,6 +1,6 @@
 ﻿namespace DVLDPresentationLayer
 {
-    partial class ManageUsers
+    partial class frmManageUsers
     {
         /// <summary>
         /// Required designer variable.

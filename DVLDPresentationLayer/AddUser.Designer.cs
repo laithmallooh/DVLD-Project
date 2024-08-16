@@ -64,7 +64,7 @@
             // 
             ctrlPersonCardWithFilter1.Location = new Point(3, 3);
             ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            ctrlPersonCardWithFilter1.SelectedPersonId = null;
+           // ctrlPersonCardWithFilter1.SelectedPersonId = null;
             ctrlPersonCardWithFilter1.Size = new Size(1512, 559);
             ctrlPersonCardWithFilter1.TabIndex = 0;
             ctrlPersonCardWithFilter1.Load += ctrlPersonCardWithFilter1_Load;

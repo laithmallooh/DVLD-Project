@@ -55,8 +55,8 @@ namespace DVLDBusinessLayer
         {
             // Call the data access layer to add a new person to the database
             this.UserID = clsUsersData.AddNewUser(this.PersonID, this.UserName, this.Password, this.IsActive);
+            return (this.PersonID != -1); // Return true if person was successfully added
 
-            return (this.UserID != -1); // Return true if person was successfully added
         }
         public static bool DeleteUser(int UserID)
         {

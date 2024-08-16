@@ -3,31 +3,8 @@
   "WorkspaceRootPath": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\addperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:addperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\shareddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:shareddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D3A6FBD3-2D19-4742-803A-B4E2CB5D80A3}|..\\DVLDBusinessLayer\\DVLDBusinessLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldbusinesslayer\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\ctrlpersoncardwithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:ctrlpersoncardwithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\adduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,15 +15,45 @@
       "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:adduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\ctrlpersoncardwithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:ctrlpersoncardwithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7B5B7258-647B-441B-9BF5-6D46A35BFBBB}|..\\DVLDDataAccessLayer\\DVLDDataAccessLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvlddataaccesslayer\\usersdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\adduser.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:adduser.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3A6FBD3-2D19-4742-803A-B4E2CB5D80A3}|..\\DVLDBusinessLayer\\DVLDBusinessLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldbusinesslayer\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlpersoncardwithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:ctrlpersoncardwithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B5B7258-647B-441B-9BF5-6D46A35BFBBB}|..\\DVLDDataAccessLayer\\DVLDDataAccessLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvlddataaccesslayer\\usersdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D3A6FBD3-2D19-4742-803A-B4E2CB5D80A3}|..\\DVLDBusinessLayer\\DVLDBusinessLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldbusinesslayer\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:managepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\addperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:addperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:manageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|e:\\laith\\coding\\projects\\dvld-project\\dvldpresentationlayer\\shareddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C907E6F-02F2-488D-9350-33D38FDEE4E2}|DVLDPresentationLayer.csproj|solutionrelative:shareddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -56,11 +63,164 @@
       "DocumentGroups": [
         {
           "DockedHeight": 257,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AddUser.Designer.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.Designer.cs",
+              "RelativeDocumentMoniker": "AddUser.Designer.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.Designer.cs",
+              "RelativeToolTip": "AddUser.Designer.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAAwEIAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T18:09:20.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Person.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDBusinessLayer\\Person.cs",
+              "RelativeDocumentMoniker": "..\\DVLDBusinessLayer\\Person.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDBusinessLayer\\Person.cs",
+              "RelativeToolTip": "..\\DVLDBusinessLayer\\Person.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAuwEoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T17:19:06.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ManageUsers.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManageUsers.cs",
+              "RelativeDocumentMoniker": "ManageUsers.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManageUsers.cs",
+              "RelativeToolTip": "ManageUsers.cs",
+              "ViewState": "AQIAADMCAAAAAAAAAAAlwEACAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T17:37:19.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ctrlPersonCardWithFilter.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs",
+              "RelativeDocumentMoniker": "ctrlPersonCardWithFilter.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs",
+              "RelativeToolTip": "ctrlPersonCardWithFilter.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAAAEwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T09:44:02.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ctrlPersonCardWithFilter.cs [Design]",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs",
+              "RelativeDocumentMoniker": "ctrlPersonCardWithFilter.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs [Design]",
+              "RelativeToolTip": "ctrlPersonCardWithFilter.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T09:43:58.023Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDBusinessLayer\\User.cs",
+              "RelativeDocumentMoniker": "..\\DVLDBusinessLayer\\User.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDBusinessLayer\\User.cs",
+              "RelativeToolTip": "..\\DVLDBusinessLayer\\User.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAIA4wDsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T08:50:21.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsersData.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDDataAccessLayer\\UsersData.cs",
+              "RelativeDocumentMoniker": "..\\DVLDDataAccessLayer\\UsersData.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDDataAccessLayer\\UsersData.cs",
+              "RelativeToolTip": "..\\DVLDDataAccessLayer\\UsersData.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAYwFIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T08:46:58.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddUser.cs [Design]",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs",
+              "RelativeDocumentMoniker": "AddUser.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs [Design]",
+              "RelativeToolTip": "AddUser.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T09:11:42.33Z",
+              "EditorCaption": " [Design]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AddUser.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs",
+              "RelativeDocumentMoniker": "AddUser.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs",
+              "RelativeToolTip": "AddUser.cs",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAAAGcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T09:11:52.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SharedData.cs",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\SharedData.cs",
+              "RelativeDocumentMoniker": "SharedData.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\SharedData.cs",
+              "RelativeToolTip": "SharedData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T10:32:15.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddPerson.cs [Design]",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddPerson.cs",
+              "RelativeDocumentMoniker": "AddPerson.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddPerson.cs [Design]",
+              "RelativeToolTip": "AddPerson.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T17:55:03.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ManagePeople.cs [Design]",
+              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManagePeople.cs",
+              "RelativeDocumentMoniker": "ManagePeople.cs",
+              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManagePeople.cs [Design]",
+              "RelativeToolTip": "ManagePeople.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T17:55:07.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ManagePeople.cs",
               "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManagePeople.cs",
               "RelativeDocumentMoniker": "ManagePeople.cs",
@@ -73,143 +233,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ManagePeople.cs [Design]",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManagePeople.cs",
-              "RelativeDocumentMoniker": "ManagePeople.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManagePeople.cs [Design]",
-              "RelativeToolTip": "ManagePeople.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T17:55:07.427Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddPerson.cs [Design]",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddPerson.cs",
-              "RelativeDocumentMoniker": "AddPerson.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddPerson.cs [Design]",
-              "RelativeToolTip": "AddPerson.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T17:55:03.665Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ManageUsers.cs",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManageUsers.cs",
-              "RelativeDocumentMoniker": "ManageUsers.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManageUsers.cs",
-              "RelativeToolTip": "ManageUsers.cs",
-              "ViewState": "AQIAADkCAAAAAAAAAAAAAD0CAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T17:37:19.03Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SharedData.cs",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\SharedData.cs",
-              "RelativeDocumentMoniker": "SharedData.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\SharedData.cs",
-              "RelativeToolTip": "SharedData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T10:32:15.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ctrlPersonCardWithFilter.cs",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs",
-              "RelativeDocumentMoniker": "ctrlPersonCardWithFilter.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs",
-              "RelativeToolTip": "ctrlPersonCardWithFilter.cs",
-              "ViewState": "AQIAAEgBAAAAAAAAAAAUwFEBAAA9AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T09:44:02.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ctrlPersonCardWithFilter.cs [Design]",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs",
-              "RelativeDocumentMoniker": "ctrlPersonCardWithFilter.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ctrlPersonCardWithFilter.cs [Design]",
-              "RelativeToolTip": "ctrlPersonCardWithFilter.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T09:43:58.023Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AddUser.cs",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs",
-              "RelativeDocumentMoniker": "AddUser.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs",
-              "RelativeToolTip": "AddUser.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAuwEAAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T09:11:52.923Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AddUser.cs [Design]",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs",
-              "RelativeDocumentMoniker": "AddUser.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\AddUser.cs [Design]",
-              "RelativeToolTip": "AddUser.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T09:11:42.33Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "ManageUsers.cs [Design]",
               "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManageUsers.cs",
               "RelativeDocumentMoniker": "ManageUsers.cs",
               "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDPresentationLayer\\ManageUsers.cs [Design]",
               "RelativeToolTip": "ManageUsers.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T09:08:14.377Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDBusinessLayer\\User.cs",
-              "RelativeDocumentMoniker": "..\\DVLDBusinessLayer\\User.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDBusinessLayer\\User.cs",
-              "RelativeToolTip": "..\\DVLDBusinessLayer\\User.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAcwFgAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T08:50:21.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UsersData.cs",
-              "DocumentMoniker": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDDataAccessLayer\\UsersData.cs",
-              "RelativeDocumentMoniker": "..\\DVLDDataAccessLayer\\UsersData.cs",
-              "ToolTip": "E:\\laith\\Coding\\Projects\\DVLD-Project\\DVLDDataAccessLayer\\UsersData.cs",
-              "RelativeToolTip": "..\\DVLDDataAccessLayer\\UsersData.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAuwGoAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T08:46:58.618Z"
+              "WhenOpened": "2024-08-10T09:08:14.377Z"
             }
           ]
         },
